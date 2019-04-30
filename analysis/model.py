@@ -1,15 +1,17 @@
 import nltk
+import re
+import numpy as np
+import pickle
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
-import numpy as np
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.model_selection import GridSearchCV
 from collections import Counter
 from sklearn.metrics import accuracy_score,f1_score
 from sklearn.model_selection import train_test_split
 from nltk.corpus import stopwords
-import re
 from sklearn.metrics import accuracy_score,f1_score
+
 
 
 positive_tweets = nltk.corpus.twitter_samples.tokenized("positive_tweets.json")
@@ -143,7 +145,6 @@ for i in parameter_c:
         print("C = %9.4f and penalty = %s show accuracy %f"%(i,pen,result))
 
 
-
 clf_NB = MultinomialNB(alpha = best_alpha)
 clf_NB.fit(train_,train_target)
 NB_result = clf_NB.predict(test_)
@@ -158,3 +159,8 @@ LR_result = clf_LR.predict(test_)
 print("Logistic Regression:\n")
 print("accuracy       :  %f"%(accuracy_score(test_target,LR_result)))
 print("macro f-score  :  %f"%(f1_score(test_target,LR_result,average = 'macro')))
+
+
+pkl_filename = "sentiment_model.pkl"  
+with open(pkl_filename, 'wb') as file:  
+    pickle.dump(clf_NB, file)
