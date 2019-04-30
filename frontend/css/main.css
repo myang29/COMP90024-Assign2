@@ -1,0 +1,102 @@
+@import url('http://fonts.googleapis.com/css?family=Montserrat:400,600');
+
+/* the selector, could change font and background colors */
+body {
+    /* space from most left */
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    font-size: .9em;
+    line-height: 1.6em;
+}
+
+/* apply to all unordered lists */
+ul {
+    /* remove bullet point */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* then style from top to bottom for the html file, find all 'class' 
+   the way to reference a class in css is to use .'name_of_container'*/
+.container {
+    text-align: center;
+    /* padding: 0.8em 1.2em 2em 40; */
+    padding: 0.8em 1.2em;
+}
+
+/* .map {
+
+} */
+
+.h1, subhead {
+    position: relative;
+    z-index: 3;
+}
+
+.subhead {
+    font-size: 1.1em;
+}
+
+/* .top-div-inline{
+    display: inline;
+}
+.bottom-div-inline{
+    display: inline;
+} */
+
+.filter-container {
+    text-align: center;
+    background: #00C2FF;
+    color: #fff;
+    width: 20%;
+    border-radius: 10px;
+    block-size: 25em;
+    /* display: inline-block; */
+    /* float: right; */
+}
+
+.real-time-container {
+    text-align: center;
+    background: #00C2FF;
+    color: #fff;
+    width: 20%;
+    border-radius: 10px;
+    block-size: 25em;
+    /* display: inline-block;
+    float: left; */
+}
+
+.wrath-types {
+    text-align: center;
+    background: #00C2FF;
+    color: #fff;
+    width: 20%;
+    border-radius: 10px;
+    block-size: 25em;
+    /* display: inline-block; */
+    float: right;
+}
+
+.keywords-rank-container {
+    text-align: center;
+    background: #00C2FF;
+    color: #fff;
+    width: 20%;
+    border-radius: 10px;
+    block-size: 25em;
+    /* display: inline-block; */
+    float: right;
+}
+
+.map {
+    width: 55%;
+}
+
+
+.nav {
+    text-align: center;
+}
