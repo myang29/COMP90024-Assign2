@@ -41,13 +41,6 @@ ul {
     font-size: 1.1em;
 }
 
-/* .top-div-inline{
-    display: inline;
-}
-.bottom-div-inline{
-    display: inline;
-} */
-
 .filter-container {
     text-align: center;
     background: #00C2FF;
@@ -93,10 +86,25 @@ ul {
 }
 
 .map {
-    width: 55%;
+    width: 80%;
+    margin: 2em, auto, 10em, 25%;
 }
 
+.central-map-container{
+    margin-right:-2%;
+    text-align: center;
+    width: 65%;
+    border-radius: 10px;
+    block-size: 20em;
+    float: right;
+}
 
 .nav {
     text-align: center;
+}
+
+.wrapper {
+    content: "";
+    display:block;
+    clear: both;
 }
