@@ -1,0 +1,87 @@
+<!-- Real-time data page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CCC Pro2 Wrath Analysis</title>
+    <!-- to link css file (styles) -->
+    <link rel="" href="css/main.css">
+</head>
+<body>
+    <!-- container/view to port hand diff screen size -->
+    <div class="container">
+        <header>
+            <h1>Team Name</h1>
+            <!-- img src="images/..svg" alt"logo/imgname" class= "logo"-->
+            <nav>
+                <!-- unordered list for listing nav -->
+                <ul class="nav" id="nav">
+                    <!--# in a link means no location -->
+                    <li> <a href="#">Real-Time Data</a> </li>
+                    <li> <a href="#">Past Data</a> </li>
+                    <li> <a href="#">Overall</a> </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- main map part -->
+        <section>
+            <ul class="date">
+                <li>
+                    <h3>Victoria</h3>
+                </li>
+                <li>
+                    <h3>Date..</h3>
+                </li>
+            </ul>
+
+            <img src="images/victoria_map.png" alt="victoria map" class="map">
+
+            <!-- checkbox to select the displayed data format-->
+            <form>
+                <label><input type="radio" name="data-display-format" value="" id="rate_format">Rate</label>
+                <label><input type="radio" name="data-display-format" value="" id="counts_format">Counts</label>
+            </form>
+
+            <ul class="data-info">
+                <li>Total number of posts: XXX</li>
+                <li>Total number of displayed posts: XXX</li>
+            </ul>
+
+        </section>
+
+        <!-- search part -->
+        <section>
+            <h2>Filter data</h2>
+
+            <ul class="search-dropdown-time">
+                <li>From</li>
+                <li>To</li>
+
+            </ul>
+
+            <!-- Button to enable data to show on the map -->
+            <a href="#" class="display-btn">Display</a>
+
+        </section>
+
+        <!-- real-time wrath data part, include a line chart -->
+        <section>
+            <h2>Real-time Wrath Data</h2>
+        </section>
+
+        <!-- wrath types and distribution, include a pie chart -->
+        <section>
+            <h2>Wrath Type</h2>
+        </section>
+
+        <!-- Key words rank, include a word could chart -->
+        <section>
+            <h2>Keywords Rank</h2>
+        </section>
+
+    </div>
+</body>
+</html>
