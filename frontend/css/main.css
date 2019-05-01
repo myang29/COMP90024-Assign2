@@ -5,6 +5,8 @@ body {
     /* space from most left */
     margin: 0;
     font-family: 'Montserrat', sans-serif;
+    color: black;
+    background: white;
 }
 
 p {
@@ -43,8 +45,8 @@ ul {
 
 .filter-container {
     text-align: center;
-    background: #00C2FF;
-    color: #fff;
+    background: rgb(216, 216, 252);
+    color: black;
     width: 20%;
     border-radius: 10px;
     block-size: 25em;
@@ -52,10 +54,24 @@ ul {
     /* float: right; */
 }
 
+.display-btn {
+    background: rgb(1, 1, 8);
+    width: calc(100% - 6em);
+    display: block;
+    color: white;
+    border-radius: 20px;
+    padding: 0.5em;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 120% 4em 0;
+    position: relative;
+    z-index: 4;
+}
+
 .real-time-container {
     text-align: center;
-    background: #00C2FF;
-    color: #fff;
+    background:  rgb(216, 216, 252);
+    color: black;
     width: 20%;
     border-radius: 10px;
     block-size: 25em;
@@ -65,8 +81,9 @@ ul {
 
 .wrath-types {
     text-align: center;
-    background: #00C2FF;
-    color: #fff;
+    /* #00C2FF */
+    background: rgb(216, 216, 252);
+    color: black;
     width: 20%;
     border-radius: 10px;
     block-size: 25em;
@@ -76,8 +93,8 @@ ul {
 
 .keywords-rank-container {
     text-align: center;
-    background: #00C2FF;
-    color: #fff;
+    background: rgb(216, 216, 252);
+    color: black;
     width: 20%;
     border-radius: 10px;
     block-size: 25em;
@@ -107,4 +124,28 @@ ul {
     content: "";
     display:block;
     clear: both;
+}
+
+
+
+
+nav ul {
+    position: inherit;
+    widows: auto;
+    background: none;
+    height: auto;
+    display: flex;
+    padding-top: 0;
+}
+
+nav ul li {
+    float: left;
+}
+nav ul li a {
+    background-color: inherit;
+    text-align: center;
+    padding: 1em 2em;
+}
+nav ul li a:hover {
+    background-color: inherit;
 }
