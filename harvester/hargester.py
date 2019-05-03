@@ -7,24 +7,10 @@ import json
 class MyStreamListener(tweepy.StreamListener):
     def on_data(self, status):
         str_tweet = str(status)
-        posttime = re.findall('created_at\":\"(.+?)\"', str_tweet)
-        text = re.findall('\"text\":\"(.+?)\",', str_tweet)
-        coordinates = re.findall('\"coordinates\":{\"type\":\"Point\",\"coordinates\":\[(.+?)\]', str_tweet)
         with open(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json', 'a') as result:
-            if coordinates == []:
-                polygon = re.findall('type\":\"Polygon\",\"coordinates\":\[(.+?)\]\}', str_tweet)
-                try:
-                    tweet = {'time': posttime[0], 'text': text[0], 'polygon': polygon[0], 'coordinates': None}
-                    result.write(json.dumps(tweet) + ',\n')
-                except:
-                    pass
-            else:
-                try:
-                    tweet = {'time': posttime[0], 'text': text[0], 'polygon': None, 'coordinates': coordinates[0]}
-                    result.write(json.dumps(tweet) + ',\n')
-                except:
-                    pass
-        print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (
+            json.dump(json.loads(str_tweet),result)
+            result.write(',\n')
+            print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (
                     1024 * 1024))
         if os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024) > 2048:
             exit()
@@ -89,6 +75,3 @@ while True:
               os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024),
               'account number', decisioner)
         decisioner+=1
-
-    if os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024) > 2048:
-        break
