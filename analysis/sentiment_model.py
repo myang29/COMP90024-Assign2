@@ -133,9 +133,9 @@ clf_NB = MultinomialNB()
 grid = GridSearchCV(estimator = clf_NB, param_grid = dict(alpha = alphas),scoring = 'accuracy') # tuning for best alpha
 grid.fit(develop_,develop_target)
 
-print("For Naive Bayes tuning parameter alpha:")
+#print("For Naive Bayes tuning parameter alpha:")
 best_alpha = grid.best_estimator_.alpha
-print("best alpha is %f"%(best_alpha))
+#print("best alpha is %f"%(best_alpha))
 
 
 # prove optimal alpha is found
@@ -143,7 +143,7 @@ for i in alphas:
     clf_NB = MultinomialNB(alpha = i)
     clf_NB.fit(train_,train_target)
     result = clf_NB.score(develop_, develop_target)
-    print("alpha = %9.4f has accuracy %f"%(i,result))
+    #print("alpha = %9.4f has accuracy %f"%(i,result))
 
 
 #tuning parameters for LR:
@@ -153,11 +153,11 @@ clf_LR = LogisticRegression()
 grid2 = GridSearchCV(estimator = clf_LR, param_grid = dict(C = parameter_c,penalty = Penalty),scoring = 'accuracy')
 grid2.fit(develop_,develop_target)
 
-print("\n")
-print("For Logistic Regresstion tuning parameter C and Penalty:")
+# print("\n")
+# print("For Logistic Regresstion tuning parameter C and Penalty:")
 best_c = grid2.best_estimator_.C
 best_pen = grid2.best_estimator_.penalty
-print("best C is %f, best Penalty is %s"%(best_c,best_pen))
+#print("best C is %f, best Penalty is %s"%(best_c,best_pen))
 
 # prove optimal parameters are found
 for i in parameter_c:
@@ -165,24 +165,24 @@ for i in parameter_c:
         clf_LR = LogisticRegression(C= i,penalty = pen)
         clf_LR.fit(train_,train_target)
         result = clf_LR.score(develop_, develop_target)
-        print("C = %9.4f and penalty = %s show accuracy %f"%(i,pen,result))
+        #print("C = %9.4f and penalty = %s show accuracy %f"%(i,pen,result))
 
 
 
 clf_NB = MultinomialNB(alpha = best_alpha)
 clf_NB.fit(train_,train_target)
 NB_result = clf_NB.predict(test_)
-print("Naive Bayes:\n")
-print("accuracy       :  %f"%(accuracy_score(test_target,NB_result)))
-print("macro f-score  :  %f\n"%(f1_score(test_target,NB_result,average = 'macro')))
+# print("Naive Bayes:\n")
+# print("accuracy       :  %f"%(accuracy_score(test_target,NB_result)))
+# print("macro f-score  :  %f\n"%(f1_score(test_target,NB_result,average = 'macro')))
 
 clf_LR = LogisticRegression(C = best_c,penalty = best_pen)
 clf_LR.fit(train_,train_target)
 LR_result = clf_LR.predict(test_)
 
-print("Logistic Regression:\n")
-print("accuracy       :  %f"%(accuracy_score(test_target,LR_result)))
-print("macro f-score  :  %f"%(f1_score(test_target,LR_result,average = 'macro')))
+# print("Logistic Regression:\n")
+# print("accuracy       :  %f"%(accuracy_score(test_target,LR_result)))
+# print("macro f-score  :  %f"%(f1_score(test_target,LR_result,average = 'macro')))
 
 
 pkl_filename = "sentiment_model.pkl"  

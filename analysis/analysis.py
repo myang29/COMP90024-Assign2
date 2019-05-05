@@ -16,7 +16,7 @@ from shapely.geometry import shape, Point
 
 row_address = ''
 processed_address = "http://115.146.92.83:8021"
-geo_data = "sa2.json"
+geo_data = "../analysis/sa2.json"
 polygon = fiona.open(geo_data)
 
 '''
@@ -26,7 +26,7 @@ myCouchPusher.pushData(r"..\harvester\result_try1.json")
 myCouchPusher.finish()
 '''
 
-with open('sentiment_model.pkl', 'rb') as file:  
+with open('../analysis/sentiment_model.pkl', 'rb') as file:  
     classifier = pickle.load(file)
 
 processed_couch = couchdb.Server(processed_address)
@@ -130,7 +130,6 @@ with open("../harvester/past_result_try1.json", "r") as f:
             else:
                 wrath = False
             
-
 
             doc = {
                 'id' : twit['id'],
