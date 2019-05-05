@@ -12,7 +12,6 @@ import fiona
 from sentiment_model import vectorizer,remove_nonalphabet,remove_stopword,lemmatization,word_lower
 from sklearn.feature_extraction import DictVectorizer
 from shapely.geometry import shape, Point
-#vectorizer = sentiment_model.vectorizer
 
 
 row_address = ''
@@ -29,7 +28,6 @@ myCouchPusher.finish()
 
 with open('sentiment_model.pkl', 'rb') as file:  
     classifier = pickle.load(file)
-
 
 processed_couch = couchdb.Server(processed_address)
 
@@ -93,7 +91,7 @@ with open("../harvester/past_result_try1.json", "r") as f:
         if twitLine[-1] == ',':
             # truncate the last character
             twitLine = twitLine[:-1]
-
+        
         twit = json.loads(twitLine)
         coordinates = get_coordinates(twit)
         if coordinates and (twit["retweeted"] == False): # check location exist and remove replicate
@@ -102,11 +100,13 @@ with open("../harvester/past_result_try1.json", "r") as f:
             # reference: https://gis.stackexchange.com/questions/208546/check-if-a-point-falls-within-a-multipolygon-with-python
             point = Point(coordinates)
             code = None
-            for multi in polygon:
-                if coordinates == [144.9631, -37.8136]:
-                    code = 206041122
-                elif point.within(shape(multi['geometry'])):
+            if coordinates == [144.9631, -37.8136]:
+                code = 206041122
+            else: 
+                for multi in polygon:
+                    point.within(shape(multi['geometry']))
                     code = multi['properties']['SA2_Code_2011']
+            
             
             # process tweet to predict
             twit_text = re.sub("http\S+","",twit['text']) # remove url
