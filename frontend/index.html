@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <div class="wrapper">
         <!-- container/view to port hand diff screen size -->
+        <!-- header includes team name, selection  of real-time or past -->
         <div class="container">
             <header>
                 <h1>Team Name</h1>
@@ -29,11 +31,12 @@
 
         </div>
 
-        <!-- wrath types and distribution, include a pie chart -->
+        <!-- top-right wrath types and distribution, include a pie chart -->
         <div class="wrath-types">
             <h2>Wrath Type</h2>
         </div>
 
+        <!-- central map part-->
         <div class="central-map-container">
             <ul class="date">
                 <li>
@@ -58,6 +61,7 @@
             </ul>
         </div>
 
+        <!-- top-left filter data-->
         <div class="filter-container">
             <h2>Filter data</h2>
 
@@ -72,18 +76,17 @@
 
         </div>
 
-        <!-- Key words rank, include a word could chart -->
+        <!-- botton-right Key words rank, include a word could chart -->
         <div class="keywords-rank-container">
                 <h2>Keywords Rank</h2>
         </div>
 
-        <!-- real-time wrath data part, include a line chart -->
+        <!-- botton-left real-time wrath data part, include a line chart -->
         <div class="real-time-container">
             <h2>Real-time Wrath Data</h2>
         </div>
 
     </div>
-
 
 
 </body>
