@@ -46,7 +46,6 @@ def average_bounding_box(box):
 
 def get_coordinates(twit):
     """ get coordinates for twitter inside VIC and ignore other place  """
-
     if twit['place'] == None:
         return None
     else:
@@ -73,6 +72,10 @@ def analysis(twitLine):
     except:
         db_proceed = processed_couch.create('processed_twit')
     
+    twitLine = twitLine.rstrip()
+    if twitLine[-1] == ',':
+        # truncate the last character
+        twitLine = twitLine[:-1]
 
     twit = json.loads(twitLine)
     coordinates = get_coordinates(twit)
