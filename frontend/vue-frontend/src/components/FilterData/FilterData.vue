@@ -4,17 +4,15 @@
             <!-- drop down data type selections -->
 
             <!-- <form action="" class="dropdown-box"> -->
-            <select name="Data_Types">
-                <option v-for="data_type in data_types" :key=data_type>{{ data_type.text }}</option>
+            <select class="dropdown-selection" name="Data_Types">
+                <option v-for="data_type in data_types" :key=data_type.id>{{ data_type.text }}</option>
             </select>
             <!-- </form> -->
 
-            <ul class="search-dropdown-time">
-                <li>From</li>
-                <li>To</li>
+            <!-- date picker to select a range of year -->
+            <date-picker class="date_range" v-model="date_range" lang="en" range type="year" format="YYYY" width="160" confirm></date-picker>
+            <!-- [ "2012-04-30T14:00:00.000Z", "2019-04-30T14:00:00.000Z" ] -->
 
-            </ul>
-        
             <!-- Button to enable data to show on the map -->
             <a href="#" class="display-btn">Display</a>
     </div>
@@ -23,8 +21,18 @@
 
 
 <script>
+// for date selection
+import DatePicker from 'vue2-datepicker'
+
 export default {
     name: 'filterdata',
+    components: {
+        DatePicker
+    },
+    // props: {
+    //     class: "filter-container"
+    // },
+
     data() {
         return {
             // TODO: decide what data will be used for comparison
@@ -34,7 +42,10 @@ export default {
                 {text: 'Crime', id: 3},
                 {text: 'Religon', id: 4},
                 {text: 'Unemployment', id: 5}
-            ]
+            ],
+            // fromdate: '',
+            // todate: '',
+            date_range: ""
         }
     }
 }
@@ -52,9 +63,22 @@ export default {
     padding: 0.5em;
     text-decoration: none;
     font-size: 1em;
-    margin: 100% 4em 0;
+    margin: 40% 4em 0;
     position: relative;
     z-index: 4;
+}
+
+.dropdown-selection {
+    width: 160px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 25%;
+    margin-left: 10px;
+}
+
+.date_range {
+    margin-top: 10%;
+    margin-left: 10px;
 }
 
 /* .dropdown-box { */

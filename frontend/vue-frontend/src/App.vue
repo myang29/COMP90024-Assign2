@@ -1,21 +1,6 @@
 <template>
   <div id="app">
-
-    <!-- HEADER -->
-    <div v-bind:class="header-container">
-      <header>
-        <h1>Team Name</h1>
-        <nav>
-          <!-- unordered list for listing nav -->
-          <ul class="nav" id="nav">
-            <!--# in a link means no location -->
-            <li> <a href="#">Real-Time Data</a> </li>
-            <li> <a href="#">Past Data</a> </li>
-            <li> <a href="#">Overall</a> </li>
-          </ul>
-        </nav>
-      </header>
-    </div>
+    <Header/>
 
     <!-- Wrath Type -->
     <WrathTypeData class="wrath-types"/>
@@ -44,6 +29,8 @@ import RealtimeData from './components/RealtimeData/RealtimeData.vue';
 import WrathTypeData from './components/WrathTypeData/WrathTypeData.vue';
 import KeywordsRank from './components/KeywordsRank/KeywordsRank.vue';
 
+import Header from './components/Header.vue';
+
 export default {
   name: 'app',
   // combine all components 
@@ -52,7 +39,19 @@ export default {
     FilterData,
     RealtimeData,
     WrathTypeData,
-    KeywordsRank
+    KeywordsRank,
+    Header
+  },
+  data: {
+    return: {
+      showBoarder: true,
+      // mapDim: 
+      //   {'mapWidth': 960, 'mapHeight': 1160}
+      // ,
+      // [960, 1160],
+      // mapWidth: 960,
+      // mapHeight: 1160,
+    }
   }
 }
 </script>
@@ -83,17 +82,6 @@ export default {
     z-index: 3;
 }
 
-
-.header-container {
-  text-align: center;
-  /* padding: 0.8em 1.2em 2em 40; */
-  padding: 0.8em 1.2em;
-  background-color: yellow;
-  width: 100%;
-  height: 30px;
-  border: 5px black;
-    
-}
 
 .nav {
   width: 50%;
@@ -165,6 +153,7 @@ ul {
   width: 20%;
   border-radius: 10px;
   block-size: 25em;
+  padding-top: 0.1px;
   /* display: inline-block; */
   /* float: right; */
 }
@@ -190,6 +179,8 @@ ul {
   width: 20%;
   border-radius: 10px;
   block-size: 25em;
+  padding-top: 0.1px;
+  margin-top: 10px;
   /* display: inline-block;
   float: left; */
 }
