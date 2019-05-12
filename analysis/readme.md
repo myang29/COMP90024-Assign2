@@ -21,30 +21,40 @@ The sentiment Analysis system contains 5 files:
    preprocess raw twitter data, conduct sentiment analysis, and matching SA2 polygons, and save result to couchDB as Processed_twit
 
 ## 2. Prerequisites
->#install python 3.6  
+```
+#install python 3.6  
 sudo apt-get intall python3.6
-
->#install nltk  
+```
+```
+#install nltk  
 pip3 install nltk
-
->#install sklearn  
+```
+```
+#install sklearn  
 pip3 install sklearn
-
->#install numpy  
+```
+```
+#install numpy  
 pip3 install numpy
-
->#intall pickle  
+```
+```
+#intall pickle  
 pip3 install pickle
-
->#install textblob  
+```
+```
+#install textblob  
 pip3 install textblob
-
->#install couchdb  
+```
+```
+#install couchdb  
 pip3 install couchdb
-
-for polygon matching algorithm:
->#install fiona  
+```
+For polygon matching algorithm:
+```
+#install fiona  
 pip3 install fiona
-
->#install shapely  
+```
+```
+#install shapely  
 pip3 install shapely
+```
