@@ -16,7 +16,7 @@
 
      <!-- Centre MAP -->
     <Map/>
-    <GenerateMap/>
+    <!-- <GenerateMap/> -->
     
   
   </div>

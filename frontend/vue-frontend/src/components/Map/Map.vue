@@ -19,22 +19,14 @@
         <!-- <svg id ="generateMap">
             {{ generatemap() }}
         </svg> -->
-        <!-- <div>
-            <svg v-on="generatemap()">
-            </svg>
-        </div> -->
-        
 
-        <!-- <ul class="data-info">
-            <li>Total number of posts: XXX</li>
-            <li>Total number of displayed posts: XXX</li>
-        </ul> -->
     </div>
     
 </template>
 
 
 <script>
+import { Promise } from 'q';
 // import citytopo from './victopo.json';
 export default {
     name: 'map',
@@ -72,7 +64,7 @@ export default {
                 .attr("height", height);
 
                 
-            var projection = d3.geo.mercator()
+            var projection = d3.geoMercator()
                 .center([143.27214643,-38.62315014])
                 .scale(5000)
                 .translate([width/4.5,height/2.4]);
@@ -80,48 +72,25 @@ export default {
                 // .translate([-900,0]);
             
 
-            var path = d3.geo.path()
+            var path = d3.geoPath()
                 .projection(projection);
             
             // convert to topojson for visualization
             d3.json("http://localhost:8080/sa2topo.json", function(error, topology) {
                 if (error) throw error;
-                var color = d3.scale.category20c();  
+                // var color = d3.scale.category20c();  
                 svg.selectAll("path")
                     .data(topojson.feature(topology, topology.objects.sa2geo).features)
                     .enter().append("path")
                     .attr("d", path)
                     .style("stroke", "black")
-                    // .style("fill",function(d,i)  
-                    //             {  
-                    //                 return color(i);  
-                    //             }) 
-                    // .attr("fill", black)
                     .attr("fill", "rgb(255,250,250)");
             });
 
-            // var color=d3.hsl(60, 1.0, 0.5);
-            // var computeColor=d3.interpolate(color)
-            // var city = this.cities;
-            // var paleblue = d3.rgb(12,36,85);
-            // var darkblue = d3.rgb(2,100,7);
-            // svg.selectAll(".place-label")
-            //     .data(city)
-            //     .attr("class","place-label")
-            //     .enter().append("text")
-            //     .attr('width', 20)
-            //     .attr('height', 20)
-            //     // .attr("xlink:href",'https://cdn3.iconfinder.com/data/icons/softwaredemo/PNG/24x24/DrawingPin1_Blue.png')
-            //     .attr("dy", ".35em")
-            //     .attr("transform", function(d) {
-            //         return "translate(" + projection([
-            //             d.location.latitute,
-            //             d.location.longitude
-            //         ])+ ")";
-            //     })
-            //     .text(function(d) {return d.name});
-
-                // .text(function(d) {return d.name});
+            Promise.all([
+                 d3.json("http://localhost:8080/sa2topo.json"),
+                //  d3,json("")
+            ])
         
         }
     },
