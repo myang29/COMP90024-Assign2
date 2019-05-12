@@ -2,21 +2,21 @@
   <div id="app">
     <Header/>
 
-    <!-- Wrath Type -->
-    <WrathTypeData class="wrath-types"/>
-
-    <!-- Centre MAP -->
-    <Map class="central-map-container"/>
-
     <!-- Filter data -->
-    <FilterData class="filter-container"/>
+    <FilterData/>
 
     <!-- Keywords rank -->
-    <KeywordsRank class="keywords-rank-container"/>
+    <KeywordsRank/>
+
+    <!-- Wrath Type -->
+    <WrathTypeData/>
 
     <!-- Real-time wrath data -->
-    <RealtimeData class="real-time-container"/>
+    <RealtimeData/>
 
+     <!-- Centre MAP -->
+    <Map/>
+    <GenerateMap/>
     
   
   </div>
@@ -28,13 +28,13 @@ import FilterData from './components/FilterData/FilterData.vue';
 import RealtimeData from './components/RealtimeData/RealtimeData.vue';
 import WrathTypeData from './components/WrathTypeData/WrathTypeData.vue';
 import KeywordsRank from './components/KeywordsRank/KeywordsRank.vue';
-
 import Header from './components/Header.vue';
-
+import GenerateMap from './components/Map/GenerateMap.vue';
 export default {
   name: 'app',
   // combine all components 
   components: {
+    GenerateMap,
     Map,
     FilterData,
     RealtimeData,
@@ -70,11 +70,14 @@ export default {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   color: black;
-  background: white;
+  background: rgb(243, 241, 241);
 
   /* content: "";
   display:block;
   clear: both; */
+}
+.app {
+  background-color: rgb(248, 240, 240);
 }
 
 .h1, subhead {
@@ -82,60 +85,30 @@ export default {
     z-index: 3;
 }
 
-
-.nav {
-  width: 50%;
-  margin: 0px auto;
-  text-align: center;
-  /* padding: 0.8em 1.2em 2em 40; */
-  padding: 0.8em 1.2em;
-}
-/* for nav bar to show horizonally */
-nav ul {
-  position: inherit;
-  widows: auto;
-  background: none;
-  height: auto;
-  display: flex;
-  padding-top: 0;
-}
-nav ul li {
-  /* margin: 0px auto; */
-  float: left;
-}
-nav ul li a {
-  background-color: inherit;
-  text-align: center;
-  padding: 1em 2em;
-}
-nav ul li a:hover {
-  background-color: inherit;
-}
-
 /* apply to all unordered lists */
 ul {
-  /* remove bullet point */
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    /* remove bullet point */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* wrath type container */
-.wrath-types {
-  text-align: center;
+/* .wrath-types {
+  text-align: center; */
   /* #00C2FF */
-  background: rgb(216, 216, 252);
+  /* background: white;
   color: #2c3e50;
   width: 20%;
   border-radius: 10px;
-  block-size: 24.6em;
+  block-size: 24.6em; */
   /* display: inline-block; */
-  float: right;
+  /* float: right;
 
-}
+} */
 
 /* Map container */
-.central-map-container {
+/* .central-map-container {
   margin-right:-2%;
   text-align: center;
   width: 65%;
@@ -143,45 +116,46 @@ ul {
   block-size: 20em;
   float: right;
   color: #2c3e50;
-}
+} */
 
 /* Filter container */
-.filter-container {
+/* .filter-container {
   text-align: center;
   background: rgb(216, 216, 252);
   color: #2c3e50;
-  width: 20%;
+  width: 100%;
+  height: 20%;
   border-radius: 10px;
-  block-size: 25em;
+  block-size: 20em;
   padding-top: 0.1px;
   /* display: inline-block; */
   /* float: right; */
-}
+/* }  */
 
 /* keywords rank container */
-.keywords-rank-container {
+/* .keywords-rank-container {
   text-align: center;
-  background: rgb(216, 216, 252);
+  background: white; */
   /* color: black; */
-  color: #2c3e50;
+  /* color: #2c3e50;
   width: 20%;
   border-radius: 10px;
-  block-size: 25em;
+  block-size: 25em; */
   /* display: inline-block; */
-  float: right;
-}
+  /* float: right;
+} */
 
 /* realtime container */
-.real-time-container {
+/* .real-time-container {
   text-align: center;
-  background:  rgb(216, 216, 252);
+  background:  white;
   color: #2c3e50;
   width: 20%;
   border-radius: 10px;
   block-size: 25em;
   padding-top: 0.1px;
-  margin-top: 10px;
+  margin-top: 10px; */
   /* display: inline-block;
   float: left; */
-}
+/* } */
 </style>
