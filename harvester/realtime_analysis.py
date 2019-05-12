@@ -1,7 +1,7 @@
 import nltk
 import json
-import sys
-sys.path.append('../analysis')
+# import sys
+# sys.path.append('../analysis')
 from nltk.corpus import wordnet as wn
 import re
 import os
@@ -16,17 +16,23 @@ from sklearn.feature_extraction import DictVectorizer
 from shapely.geometry import shape, Point
 
 row_address = ''
-processed_address = "http://115.146.92.83:8021"
+processed_address = "http://115.146.92.83:8023"
 geo_data = "../analysis/sa2.json"
 polygon = fiona.open(geo_data)
 processed_couch = couchdb.Server(processed_address)
 
+try:
+    db_proceed = processed_couch['processed_twit']
+except:
+    db_proceed = processed_couch.create('processed_twit')
 
-with open('../analysis/sentiment_model.pkl', 'rb') as file:  
+
+
+with open('sentiment_model.pkl', 'rb') as file:  
     classifier = pickle.load(file)
 
 # import keywords for wrath
-with open("../analysis/wrath_word.csv",'r') as f:
+with open("wrath_word.csv",'r') as f:
     file = csv.reader(f)
     wrath_word = set(list(file)[0])
 
@@ -67,10 +73,6 @@ def get_coordinates(twit):
 
 
 def analysis(twitLine):
-    try:
-        db_proceed = processed_couch['processed_twit']
-    except:
-        db_proceed = processed_couch.create('processed_twit')
     
     twitLine = twitLine.rstrip()
     if twitLine[-1] == ',':

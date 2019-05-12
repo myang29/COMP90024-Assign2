@@ -6,7 +6,6 @@ import os
 import csv
 from textblob import TextBlob
 import couchdb
-import mpcouch
 import pickle
 import fiona
 from sentiment_model import vectorizer,remove_nonalphabet,remove_stopword,lemmatization,word_lower
@@ -80,7 +79,7 @@ def get_coordinates(twit):
         return None
 
 
-with open("../harvester/past_result_try1.json", "r") as f:
+with open("past_result_try1.json", "r") as f:
     total_line = 0
     twitLine = f.readline()
 
