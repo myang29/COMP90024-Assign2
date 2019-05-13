@@ -1,7 +1,7 @@
 # Sentiment Analysis
 ## 1. Introduction
 
-A python based sentiment analysis system which preprocesses raw data, conducts sentiment analysis by Naive Bayes combined with textblob and keywords, and matches twitter which inside the VIC state by corresponding SA2 polygon.
+A python based sentiment analysis system which preprocesses raw twitter data from eight Australian Capital city and conducts sentiment analysis by Naive Bayes combined with textblob and keywords.
 
 The sentiment Analysis system contains 5 files:
 
@@ -14,8 +14,8 @@ The sentiment Analysis system contains 5 files:
 3. wrath_word.csv  
    A text file contains keywords which indicates Wrath emotion.
 
-4. sa2.json  
-   A json file of SA2 polygon used for matching the twitter location by corresponding SA2 Code.
+4. capital.csv  
+   A csv file with Australian capital cities and its coordinates
 
 5. analysis.py  
    preprocess raw twitter data, conduct sentiment analysis, and matching SA2 polygons, and save result to couchDB as Processed_twit
@@ -48,13 +48,4 @@ pip3 install textblob
 ```
 #install couchdb  
 pip3 install couchdb
-```
-For polygon matching algorithm:
-```
-#install fiona  
-pip3 install fiona
-```
-```
-#install shapely  
-pip3 install shapely
 ```
