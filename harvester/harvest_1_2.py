@@ -4,39 +4,48 @@ global time_new,counter
 import tweepy
 import re
 import json
-import demjson
+import sys
+import nltk
+import json
+import sys
+#import demjson
+
+
 class MyStreamListener(tweepy.StreamListener):
     def on_data(self, status):
         str_tweet = str(status)
+        print('##############before analysis#################')
+        #analysis(str_tweet)
         print(str_tweet)
+        print('##################after analysis#####################')
+        #print(str_tweet)
         tweet_id = re.findall('id\":(\d+),',str_tweet)
         if(tweet_id != []):
             tweet_id=tweet_id[0]
         user_id = re.findall('user\":\{\"id\":(\d+),',str_tweet)
-        with open(r'E:\home work\semester2\cloud computing\ass2\data\tweetId_try1.txt', 'a') as tweet_id_file:
+        with open(path+r'tweetId_try1.txt', 'a') as tweet_id_file:
             tweet_id_file.write(tweet_id+'\n')
         if (user_id != []):
             user_id = user_id[0]
             getting_user_history(user_id)
-        print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\past_result_try1.json') / (1024 * 1024))
+        #print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\past_result_try1.json') / (1024 * 1024))
 
-        with open(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json', 'a') as result:
+        with open(path+r'result_try1.json', 'a') as result:
             json.dump(json.loads(str_tweet),result)
             result.write(',\n')
-            print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (
-                    1024 * 1024))
-        if os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024) > 2048:
-            exit()
+            #print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024))
     def on_error(self, status):
         if status == 420:
-            print(420,status)
+            #print(420,status)
+            pass
         else:
-            print('other',status)
+            #print('other',status)
+            pass
 
 def getting_data(consumer_key,consumer_secret,access_token,access_token_secret):
 
     global time_start
-    with open(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json', 'a') as result:
+    with open(path+r'result_try1.json', 'a') as result:
         auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
         auth.set_access_token(access_token,access_token_secret)
 
@@ -76,28 +85,27 @@ def getting_user_history(user_id):
                         tweet_id = re.findall('id\': (\d+),', str_tweets)
                         if tweet_id!=[]:
                             tweet_id = tweet_id[0]
-                        with open(r'E:\home work\semester2\cloud computing\ass2\data\tweetId_try1.txt', 'r') as tweet_id_file:
+                        with open(path +r'tweetId_try1.txt', 'r') as tweet_id_file:
                             decisioner1 = 0
                             for i in tweet_id_file:
                                 if tweet_id==i:
                                     decisioner1=1
                             if decisioner1==0:
-                                with open(r'E:\home work\semester2\cloud computing\ass2\data\past_result_try1.json',
-                                          'a') as result1:
+                                with open(path+r'past_result_try1.json','a') as result1:
                                     str_tweets = re.findall('_json=(.*?),\screated_at=datetime\.datetime', str_tweets)
                                     if (str_tweets != []):
                                         str_tweets = str(str_tweets[0])
-                                        js = eval(str_tweets)
+                                       js = eval(str_tweets)
                                         json.dump(js, result1)
                                         result1.write(',\n')
-                                        with open(r'E:\home work\semester2\cloud computing\ass2\data\tweetId_try1.txt',
-                                                  'a') as tweet_id_file:
+                                        with open(path+r'tweetId_try1.txt','a') as tweet_id_file:
                                             tweet_id_file.write(tweet_id + '\n')
-                                        if(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\past_result_try1.json') / (1024 * 1024)>15000):
+                                        if(os.path.getsize( path +r'past_result_try1.json') / (1024 * 1024)>15000):
                                             exit()
 
     except Exception as e:
-        print(str(e))
+        print('error getting history----------------',str(e))
+        pass
 consumer_key_list = []
 consumer_key_list.append('EPCx8b0R05KtuAkW5MLm1mSCg')
 consumer_key_list.append('Efvd7TxUTAFhWtkwaAv8rkPkS')
@@ -117,26 +125,21 @@ access_token_secret_list.append('OvKCt9VAHpFrGoTki3bsvf2WmpM6uyiIgK8jZDbAjqcPt')
 start = time.clock()
 decisioner = 0
 time_start = []
+path = str(sys.argv[1])
 
-with open(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json','a') as init:
+with open(path+r'result_try1.json','a') as init:
     pass
 while True:
     if decisioner>=len(consumer_key_list):
         decisioner-=len(consumer_key_list)
     try:
         end = time.clock()
-        print('time', end - start, '  file size  ',
-              os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024),
-              'account number', decisioner)
+        #print('time', end - start, '  file size  ',os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024),'account number', decisioner)
         getting_data(consumer_key_list[decisioner], consumer_secret_list[decisioner], access_token_list[decisioner],access_token_secret_list[decisioner])
         #print('time',end-start,'  file size  ',os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024),'account number',decisioner)
     except Exception as e:
         #time.sleep(20)
-        print(str(e))
+        print('error----------------',str(e))
         end = time.clock()
-        print('time', end - start, '  file size  ',
-              os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024),
-              'account number', decisioner)
+        #print('time', end - start, '  file size  ',os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024),'account number', decisioner)
         decisioner+=1
-
-
