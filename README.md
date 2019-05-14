@@ -13,4 +13,4 @@ by Team 45
 - `frontend`: code for frontend UI
 - `harvester`: code for tweet harvesting with sentiment analysis integrated
 - `infra`: code for Ansible automation  
-  Please refer to `infra/README.md` for more details of automatic deployment. 
+  **Please refer to `infra/README.md` for more details of automatic deployment.** 
