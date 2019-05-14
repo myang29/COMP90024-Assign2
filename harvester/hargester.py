@@ -104,7 +104,7 @@ else:
     wrath = False
 
 doc = {
-    'id': twit['id'],
+    '_id': str(twit['id']),
     'created_at': twit['created_at'],
     'coordinates': coordinates,
     'text': twit_text,
