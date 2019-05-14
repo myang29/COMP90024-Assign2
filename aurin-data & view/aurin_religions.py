@@ -57,8 +57,6 @@ for item in list:
         # process each religion in the region
         for religion in region_data:
 
-            person = region_data[religion]
-
             # # compare with the max
             # if dataNotNull and person > max_religion_person:
             #     max_religion_person = person
@@ -66,11 +64,16 @@ for item in list:
             #     max_religion_title = title
 
             # compute percentage
-            percentage = round(region_data[religion] / total_person, 5) if dataNotNull else 1
+            percentage = round(float(region_data[religion])/ (total_person if dataNotNull else 1), 5)
+            if religion == 'sb_osb_nra_nr_p':
+                no_religion = percentage
+            if religion == 'religious_affiliation_ns_p':
+                religion_not_stated = percentage
+
 
             # add to new dict
-
-            new_region_doc[religion] = percentage
+            title = religionMap.attribute_map[religion]
+            new_region_doc[title] = percentage
 
         # compute the max religion's percentage
 
@@ -95,8 +98,7 @@ for item in list:
             #     child_percentage_data[child] = round(child_percent / parent_percent, 5)
 
         # compute religious percentage
-        religious_percent = round(1 - new_region_doc["sb_osb_nra_nr_p"] - new_region_doc['religious_affiliation_ns_p'],
-                                  5)
+        religious_percent = round(1 - no_religion - religion_not_stated, 5)
         new_region_doc['religious_percent'] = religious_percent
 
 
@@ -105,7 +107,7 @@ for item in list:
 
         # send doc to couchdb server
         couch.upload("gccsa_religion", new_region_doc)
-        print(new_region_doc)
+        # print(new_region_doc)
 
 
 

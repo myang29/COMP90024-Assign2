@@ -58,10 +58,12 @@ for item in list:
 
                 #modify title
                 c_title = re.sub(p_title,'',c_title)
+                new_title = c_title.strip()
 
         #add the child to the map
-        attribute_map[c_key] = c_title
+        attribute_map[c_key] = new_title
 
+print(attribute_map)
 # couch.upload("gccsa_religion", attribute_map)
 
 # f = open("attribute_map.json","w")
