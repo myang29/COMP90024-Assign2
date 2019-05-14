@@ -1,18 +1,20 @@
 
 <template>
-    <div class="header-container">
+    <div class="header-container" :style="backgroundDiv">
         <header>
-            <h1>Team 45 - Wrath</h1>
+            <!-- h1 class="text-info"-->
+            <h1>Wrath Analysis over Australia</h1>
+            <!-- <h4 class="col-12">Team 45</h4> -->
             <nav>
             <!-- unordered list for listing nav -->
-            <ul class="nav" id="nav">
+            <!-- <ul class="nav" id="nav"> -->
                 <!--# in a link means no location -->
-                <li> <a href="#">Real-Time Data</a> </li>
+                <!-- <li> <a href="#">Real-Time Data</a> </li>
                 <li> <a href="#">Past Data</a> </li>
-                <li> <a href="#">Overall</a> </li>
-            </ul>
+                <li> <a href="#">Overall</a> </li> -->
+            <!-- </ul> -->
             </nav>
-      </header>
+        </header>
     </div>
     
     
@@ -21,7 +23,15 @@
 
 <script>
 export default {
-    name: 'header'
+    name: 'header',
+    data() {
+      return{
+        backgroundDiv: {backgroundImage:'url(' + require('./Anger.jpg') + ')',
+        backgroundRepeat:'no-repeat',
+        backgroundSize:'100% 100%'
+    }
+      }
+    }
 }
 </script>
 
@@ -32,23 +42,59 @@ export default {
     /* color: #fff; */
     text-align: center;
     padding: 10px;
+    margin-bottom: 0;
     /* border: 5px black; */
 
 }
+h1{
+  padding-top: 30px;
+  color: black;
+  font-weight: 1000;
+  font-family: 'Montserrat', sans-serif;
+}
 
 .header-container {
-  text-align: center;
-  border: 4px dotted black;
+    width: 98%;
+    text-align: center;
+    /* border: 1px solid black; */
+    margin-bottom: 0px;
+    margin-left: 1%;
+    padding-bottom: 0px;
+    background-color: white;
+    height: 500px;
     
 }
 .header a {
     /* color: #fff; */
     /* padding-right: 5px; */
 }
+
 .nav {
-    text-align: center;
-    text-align: center;
-    /* padding: 0.8em 1.2em 2em 40; */
-    padding: 0.8em 1.2em;
+  width: 50%;
+  margin: 0px auto;
+  text-align: center;
+  /* padding: 0.8em 1.2em 2em 40; */
+  padding: 0.8em 1.2em;
+}
+/* for nav bar to show horizonally */
+nav ul {
+  position: inherit;
+  widows: auto;
+  background: none;
+  height: auto;
+  display: flex;
+  padding-top: 0;
+}
+nav ul li {
+  /* margin: 0px auto; */
+  float: left;
+}
+nav ul li a {
+  background-color: inherit;
+  text-align: center;
+  padding: 1em 2em;
+}
+nav ul li a:hover {
+  background-color: inherit;
 }
 </style>
