@@ -63,8 +63,10 @@ for item in list:
         #add the child to the map
         attribute_map[c_key] = new_title
 
-print(attribute_map)
-# couch.upload("gccsa_religion", attribute_map)
+# print(attribute_map)
+couch.upload("religion_map", attribute_map)
+couch.upload("religion_map", {'parent_child_dict':parent_child_dict})
+
 
 # f = open("attribute_map.json","w")
 # attribute_map_json = json.dump(attribute_map,f)
