@@ -189,7 +189,7 @@ LR_result = clf_LR.predict(test_)
 # print("macro f-score  :  %f"%(f1_score(test_target,LR_result,average = 'macro')))
 
 
-pkl_filename = "sentiment_model.pkl"  
+pkl_filename = "../harvester/sentiment_model.pkl"  
 with open(pkl_filename, 'wb') as file:  
     pickle.dump(clf_NB, file)
 
