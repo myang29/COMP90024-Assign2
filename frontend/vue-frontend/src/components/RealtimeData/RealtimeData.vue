@@ -1,7 +1,7 @@
 <template>
     <div class="real-time-container">
-        <h2>Relation linear Chart</h2>
-        <img src="./religion.jpeg" alt="wrath bar chart" class="barchart">
+        <h2>Relation line Chart</h2>
+        <img src="img_src" alt="Please first select a comparing data type" class="barchart" :change="loadImg">
     </div>
     
 </template>
@@ -9,7 +9,24 @@
 
 <script>
 export default {
-    name: 'realtimedata',
+    name: 'RealtimeData',
+    props: {
+        typeName: String
+    }, 
+    data() {
+        return{
+            img_src: ""
+        }
+    },
+    methods: {
+        loadImg(){
+            if (this.typeName === "Religion"){
+                this.img_src = "./religion.jpeg"
+            }else {
+                this.img_src = "./voluntary.jpeg"
+            }
+        }
+    }
 }
 </script>
 
@@ -17,7 +34,7 @@ export default {
 <style scoped>
 
 .real-time-container {
-    /* border: 1px solid black; */
+    border: 1px solid black;
     text-align: center;
     background:  white;
     color: #2c3e50;
@@ -32,7 +49,7 @@ export default {
     /* height: 500px;  */
     /* display: inline;   */
 
-    margin-top: 10px;
+    margin-top: 4px;
     /* float: left; */
     /* display:inline;   */
     margin-left: 1%;

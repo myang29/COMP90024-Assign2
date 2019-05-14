@@ -79,18 +79,18 @@ export default {
 
 <style scoped>
 .wrath-types {
-    /* border: 5px solid black; */
+    border: 1px solid black;
     text-align: center;
     background:  white;
     color: #2c3e50;
     width: 98%;
     /* border-radius: 10px; */
     block-size: 22em;
-    padding-top: 0.1px;
-    margin-top: 10px;
+    padding-top: 4px;
+    margin-top: 13px;
     /* float: left; */
     /* display:inline;   */
-    margin-left: 2%;
+    margin-left: 1%;
     height: 500px;
     margin-right: 1px;
     /* margin-right: 24%; */

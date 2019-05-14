@@ -1,32 +1,31 @@
 <template>
     <div>
         <div class="filter-container">
-            <h3>Filter data</h3>
+            <h3>Select comparing data: </h3>
             
-            <button class="display-btn" v-on:click="getData(aurin_url)">Display</button>
+            <!-- <button class="display-btn" v-on:click="getData(aurin_url)">Display</button> -->
 
            
             <!-- <form action="" class="dropdown-box"> -->
-            <select v-on:change="indexSelected" v-model="id" class="dropdown-selection" name="Data_Types">
+            <select v-on:change="indexSelected" v-model="type" class="dropdown-selection" name="Data_Types">
                 <option v-for="data_type in data_types" :key=data_type.id>{{ data_type.text }}</option>
                 <h3>selected.text</h3>
             </select>
         </div>
-
-        <Map/>
-
-        <!-- Keywords rank -->
-        <!-- <KeywordsRank /> -->
-
-        <!-- Wrath Type -->
-        <!-- <WrathTypeData :wrathdata="wrathdata" :aurinData="aurinData" :aurinType="aurinType"/> -->
         <div class="row">
             <div class="col-6">
-                <WrathTypeData :wrathdata="wrathdata" :aurinData="aurinData" :aurinType="aurinType"/>
+                <Map class="text-center"/>
             </div>
             <div class="col-6">
-            <!-- <h2>hahaha</h2> -->
-            <!-- Keywords rank -->
+                <WrathTypeData :wrathdata="wrathdata" :aurinData="aurinData" :aurinType="aurinType" class="text-center"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <KeywordsRank />
+            </div>
+            <div class="col-6">
                 <RealtimeData />
             </div>
 
@@ -59,6 +58,7 @@ export default {
 
     data() {
         return {
+            type: "Data Types",
             myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
             selected: "",
             // TODO: decide what data will be used for comparison
@@ -140,17 +140,21 @@ export default {
     /* background: rgb(216, 216, 252); */
     background-color: white;
     /* color: #2c3e50; */
-    width: 98%;
+    width: 48%;
     /* height: 50%; */
     /* border-radius: 10px; */
     block-size: 7em;
     padding: 0.1px;
     display: block;
     margin-left: 1%;
-    margin-top: 0.5%;
-    border: 1px solid black;
-    margin-bottom: 0px;
+    margin-top: 4%;
+    border: 0.5px solid black;
+    margin-bottom: 5px;
   /* float: right; */
+}
+h3{
+    padding-top: 8px;
+    padding-left: 15px;
 }
 
 .display-btn {
@@ -171,11 +175,13 @@ export default {
 .dropdown-selection {
     width: 20%;
     height: 30px;
-    font-size: 16px;
+    font-size: 17px;
     text-align: center;
-    margin-top: 0%;
-    margin-left: 140px;
+    margin-top: 1%;
+    margin-left: 300px;
     /* padding-top: 0; */
+    padding-top: 3px;
+    padding-left: 15px;
 }
 
 .map-container {

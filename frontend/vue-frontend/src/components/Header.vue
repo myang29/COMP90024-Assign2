@@ -1,10 +1,10 @@
 
 <template>
-    <div class="header-container">
+    <div class="header-container" :style="backgroundDiv">
         <header>
             <!-- h1 class="text-info"-->
             <h1>Wrath Analysis over Australia</h1>
-            <h4 class="col-12">Team 45</h4>
+            <!-- <h4 class="col-12">Team 45</h4> -->
             <nav>
             <!-- unordered list for listing nav -->
             <!-- <ul class="nav" id="nav"> -->
@@ -14,7 +14,7 @@
                 <li> <a href="#">Overall</a> </li> -->
             <!-- </ul> -->
             </nav>
-      </header>
+        </header>
     </div>
     
     
@@ -23,7 +23,15 @@
 
 <script>
 export default {
-    name: 'header'
+    name: 'header',
+    data() {
+      return{
+        backgroundDiv: {backgroundImage:'url(' + require('./Anger.jpg') + ')',
+        backgroundRepeat:'no-repeat',
+        backgroundSize:'100% 100%'
+    }
+      }
+    }
 }
 </script>
 
@@ -38,16 +46,22 @@ export default {
     /* border: 5px black; */
 
 }
+h1{
+  padding-top: 30px;
+  color: black;
+  font-weight: 1000;
+  font-family: 'Montserrat', sans-serif;
+}
 
 .header-container {
     width: 98%;
     text-align: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-bottom: 0px;
     margin-left: 1%;
     padding-bottom: 0px;
     background-color: white;
-    height: 100px;
+    height: 500px;
     
 }
 .header a {

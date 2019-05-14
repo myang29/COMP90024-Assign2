@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <Header/>
+     <p>Never go to bed mad. Stay up and fight.          - Phyllis Diller</p>
 
+      <p>Speak when you are angry and you will 
+        make the best speech you will ever regret.          - Ambrose Bierce</p>
     <!-- Filter data -->
     <FilterData/>
 
@@ -42,7 +45,7 @@ export default {
 <style>
 @import url('http://fonts.googleapis.com/css?family=Montserrat:400,600');
 #app {
-  /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -51,7 +54,7 @@ export default {
 
   /* space from most left */
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
   color: black;
   background: rgb(243, 241, 241);
 
@@ -74,6 +77,13 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+p{
+  font-size: 28px;
+  margin-top: 10px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  
 }
 
 

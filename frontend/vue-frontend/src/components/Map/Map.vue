@@ -1,16 +1,16 @@
 <template>
   <div class="map-container">
-    <div class="row">
-        <div class="col-6">
-          <div id="map"  class="text-center"></div>
-        </div>
-        <div class="col-6">
+    <!-- <div class="row"> -->
+        <!-- <div class="col-6"> -->
+        <div id="map"></div>
+        <!-- </div> -->
+        <!-- <div class="col-6"> -->
           <!-- <h2>hahaha</h2> -->
           <!-- Keywords rank -->
-          <KeywordsRank class="text-center"/>
-        </div>
+          <!-- <KeywordsRank class="text-center"/> -->
+        <!-- </div> -->
 
-    </div>
+    <!-- </div> -->
 
   </div>
 </template>
@@ -20,13 +20,13 @@
 import statesData from "./data2";
 import { Promise } from "q";
 import { log } from 'util';
-import MsgBus from '../msgBus.js';
+// import MsgBus from '../msgBus.js';
 import KeywordsRank from '../KeywordsRank/KeywordsRank.vue'
 // import citytopo from './victopo.json';
 export default {
   name: "map",
   components: {
-    MsgBus,
+    // MsgBus,
     KeywordsRank
   },
   data() {
@@ -260,7 +260,7 @@ export default {
 
         info.update(layer.feature.properties);
         // send city name to wordcloud
-        MsgBus.$emit('cityName', layer.feature.properties.name);
+        // MsgBus.$emit('cityName', layer.feature.properties.name);
       }
 
       var geojson;
@@ -368,11 +368,12 @@ export default {
   
 }
 #map {
-  /* width: 50%; */
+  /* width: 100%; */
   height: 500px;
   margin-top: 0;
   margin-left: 2%;
-  border: 5px solid black;
+  border: 1px solid black;
+  
 }
 
 .radio-btn {
