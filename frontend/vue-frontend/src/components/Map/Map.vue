@@ -1,16 +1,8 @@
 <template>
   <div class="map-container">
-    <!-- <div class="row"> -->
-        <!-- <div class="col-6"> -->
-        <div id="map"></div>
-        <!-- </div> -->
-        <!-- <div class="col-6"> -->
-          <!-- <h2>hahaha</h2> -->
-          <!-- Keywords rank -->
-          <!-- <KeywordsRank class="text-center"/> -->
-        <!-- </div> -->
 
-    <!-- </div> -->
+        <div id="map"></div>
+
 
   </div>
 </template>
@@ -20,15 +12,8 @@
 import statesData from "./data2";
 import { Promise } from "q";
 import { log } from 'util';
-// import MsgBus from '../msgBus.js';
-import KeywordsRank from '../KeywordsRank/KeywordsRank.vue'
-// import citytopo from './victopo.json';
 export default {
   name: "map",
-  components: {
-    // MsgBus,
-    KeywordsRank
-  },
   data() {
     return {
       cities: [
@@ -96,79 +81,8 @@ export default {
   },
 
   methods: {
-    async loadData() {
-      this.loading = true;
-      try {
-        await Promise.all([this.generatemap()]);
-      } catch (error) {
-        this.errormsg = error.message;
-      } finally {
-        this.loading = false;
-      }
-    },
 
-    getData: function() {
-      return this.$axios
-        .get(
-          "http://172.26.38.75:9024/processed_twit/_design/wrath/_view/rate?group=true"
-        )
-        .then(response => {
-          this.dbData = response.data;
-          console.log(this.dbData.total_rows);
-        });
-    },
 
-    generatemap() {
-      var width = 1300,
-        height = 1200;
-
-      // create svg for displaying map
-      var svg = d3
-        .select("body")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
-
-      var projection = d3
-        .geoMercator()
-        .center([133.8807, 23.698])
-        .scale(1000)
-        .translate([width / 2, height / 100]);
-      // .scale(550)
-      // .translate([-900,0]);
-
-      var path = d3.geoPath().projection(projection);
-
-      // convert to topojson for visualization
-      return d3.json("http://localhost:8080/aus_topo.json", function(
-        error,
-        topology
-      ) {
-        if (error) throw error;
-        // var color = d3.scale.category20c();
-        svg
-          .selectAll("path")
-          .data(topojson.feature(topology, topology.objects.australia).features)
-          .enter()
-          .append("path")
-          .attr("d", path)
-          .style("stroke", "black")
-          .attr("fill", "rgb(255,250,250)");
-      });
-
-      // Promise.all([
-      //      d3.json("http://localhost:8080/sa2topo.json"),
-      //      d3.json("http://localhost:8080/victopo.json")]).then(([victopo, wrath]) =>{
-      //         svg.selectAll("path")
-      //         .data(topojson.feature(victopo, victopo.objects.sa2geo).features)
-      //         .enter().append("path")
-      //         .attr("d", path)
-      //         .style("stroke", "black")
-      //         .attr("fill", "rgb(255,250,250)");
-
-      //         console.log(wrath.objects.viccity_geo);
-      //     })
-    },
     initMap() {
       var map = L.map("map").setView([-27.4698, 138.6007], 4);
 
@@ -329,50 +243,17 @@ export default {
 
 
 <style scoped>
-/* .map-boarder {
-  border: 5px solid black;
-} */
-/* 
-.map-container { 
-    border: 1px solid gray;
-    margin: auto; 
-    margin-left: -10px;
-    padding-left: -40px;
-    width: 60%;
-    height: 50%;
-    margin-top: 0px;
-    margin-right: 3px;
-    display: block; 
-} */
 
-#mapHolder {
-  width: 50vw;
-  height: 50vh;
-  /* border: 1px solid gray; */
-  display: block;
-}
-.map {
-  /* width: 80%;
-    margin: 2em, auto, 10em, 25%; */
-  display: block;
-  margin-left: 10%;
-  /* border: 5px solid pink; */
-  display: block;
-  /* width: 65%; */
-  /* margin-top: 40px; */
-  /* margin-left: 45px; */
-  /* margin-right: 60%; */
-  /* margin-bottom: 10px; */
-  z-index: 999;
-  position: relative;
-  
-}
+
+
 #map {
   /* width: 100%; */
   height: 500px;
   margin-top: 0;
   margin-left: 2%;
+  margin-right: 1%;
   border: 1px solid black;
+  width: 97%;
   
 }
 

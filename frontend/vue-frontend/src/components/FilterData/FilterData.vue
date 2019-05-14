@@ -1,35 +1,47 @@
 <template>
     <div>
-        <div class="filter-container">
-            <h3>Select comparing data: </h3>
-            
-            <!-- <button class="display-btn" v-on:click="getData(aurin_url)">Display</button> -->
 
-           
-            <!-- <form action="" class="dropdown-box"> -->
-            <select v-on:change="indexSelected" v-model="type" class="dropdown-selection" name="Data_Types">
-                <option v-for="data_type in data_types" :key=data_type.id>{{ data_type.text }}</option>
-                <h3>selected.text</h3>
-            </select>
-        </div>
+        <h2>Wrath Data Analysis</h2>
+        <Map class="text-center"/>
         <div class="row">
             <div class="col-6">
-                <Map class="text-center"/>
-            </div>
-            <div class="col-6">
-                <WrathTypeData :wrathdata="wrathdata" :aurinData="aurinData" :aurinType="aurinType" class="text-center"/>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-6">
+                <!-- <Map class="text-center"/> -->
                 <KeywordsRank />
             </div>
             <div class="col-6">
-                <RealtimeData />
+                <WrathTypeData class="text-center"/>
+            </div>
+        </div>
+
+        <h2>Wrath & Voluntary Work</h2>
+        <div class="row">
+            <div class="col-6">
+                <div class="bar-container">
+                    <img src="./voluntary_bar.jpeg" alt="wrath bar chart" class="barchart text-center">
+                </div>
             </div>
 
+            <div class="col-6">
+                <div class="line-container">
+                    <img src="./voluntary.jpeg" alt="wrath bar chart" class="linechart text-center">
+                </div>
+            </div>
         </div>
+
+        <h2>Wrath & Religion Work</h2>
+        <div class="row">
+            <div class="col-6">
+                <div class="bar-container">
+                    <img src="./religion_bar.jpeg" alt="wrath bar chart" class="barchart text-center">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="line-container">
+                    <img src="./religion.jpeg" alt="wrath bar chart" class="linechart text-center">
+                </div>
+            </div>
+        </div>
+
 
     </div>
     
@@ -41,17 +53,15 @@
 // import DatePicker from 'vue2-datepicker'
 import KeywordsRank from '../KeywordsRank/KeywordsRank.vue'
 import WrathTypeData from '../WrathTypeData/WrathTypeData.vue'
-import RealtimeData from '../RealtimeData/RealtimeData.vue'
 import GenerateMap from '../Map/GenerateMap.vue'
 import Map from '../Map/Map.vue';
-// import wordcloud from 'vue-wordcloud'
 export default {
     name: 'filterdata',
     components: {
         Map,
         KeywordsRank,
         WrathTypeData,
-        RealtimeData,
+        // RealtimeData,
         GenerateMap,
 
     },
@@ -196,4 +206,67 @@ h3{
     width: 10%;
 } */
 
+h2 {
+    padding-top: 80px;
+    font-weight: 800;
+    
+    /* font-family: 'Montserrat', sans-serif; */
+}
+
+.barchart {
+    margin-top: 30px;
+    margin-left: 0;
+    margin-right: 10px;
+    width: 100%;
+    height: 90%;
+    padding-top: 10px;
+    /* width: 650px;
+    height: 450px; */
+}
+.bar-container{
+    border: 1px solid black;
+    text-align: center;
+    background: white;
+    color: #2c3e50;
+    /* width: 20%; */
+    /* border-radius: 10px; */
+    block-size: 22em;
+    padding-top: 0.1px;
+    /* margin-top: 1px; */
+    margin-left: 3%;
+    margin-top: 2%;
+    /* float: right; */
+    height: 500px;
+    /* width: 50%; */
+    /* marginleft */
+}
+
+.line-container{
+    border: 1px solid black;
+    text-align: center;
+    background:  white;
+    color: #2c3e50;
+    width: 98%;
+    /* border-radius: 10px; */
+    block-size: 22em;
+    padding-top: 4px;
+    margin-top: 13px;
+    /* float: left; */
+    /* display:inline;   */
+    /* margin-left: 1%; */
+    height: 500px;
+    margin-right: 1px;
+    /* margin-right: 24%; */
+    margin-bottom: 3%;
+    padding-bottom: 3%;
+    
+}
+
+.linechart {
+    margin-top: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 90%;
+    height: 90%;
+}
 </style>

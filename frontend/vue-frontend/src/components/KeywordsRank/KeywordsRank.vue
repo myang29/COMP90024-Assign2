@@ -126,10 +126,11 @@ export default {
   block-size: 22em;
   padding-top: 0.1px;
   /* margin-top: 1px; */
-  margin-left: 2%;
-  margin-top: 4px;
+  margin-left: 4%;
+  margin-top: 2%;
   /* float: right; */
   height: 500px;
+ /* marginleft */
 
 }
 #keywords {
