@@ -49,7 +49,7 @@ def analysis(twit):
             # reference: https://gis.stackexchange.com/questions/208546/check-if-a-point-falls-
             
             
-            in-a-multipolygon-with-python
+            #in-a-multipolygon-with-python
             # point = Point(coordinates)
             # code = None
             # if coordinates == [144.9631, -37.8136]:
