@@ -1,24 +1,32 @@
 <template>
-    <div class="filter-container">
-        <h3>Filter data</h3>
+    <div>
+        <div class="filter-container">
+            <h3>Filter data</h3>
             
-             <!-- Button to enable data to show on the map -->
-            <!-- <a href="#" class="display-btn">Display</a> -->
+            <button class="display-btn" v-on:click="getData(aurin_url)">Display</button>
 
-            <button style="display-btn" v-on:click="getData">Display</button>
-
-            <!-- drop down data type selections -->
-            <!-- date picker to select a range of year -->
-            <!-- <date-picker class="date_range" v-model="date_range" lang="en" range type="year" format="YYYY" width="160" confirm></date-picker> -->
-           
            
             <!-- <form action="" class="dropdown-box"> -->
-            <select class="dropdown-selection" name="Data_Types">
+            <select v-on:change="indexSelected" v-model="id" class="dropdown-selection" name="Data_Types">
                 <option v-for="data_type in data_types" :key=data_type.id>{{ data_type.text }}</option>
+                <h3>selected.text</h3>
             </select>
-            <p>{{ dbData.total_rows }}</p>
-            <!-- </form> -->
+        </div>
 
+        <!-- Keywords rank -->
+        <KeywordsRank />
+
+        <!-- Wrath Type -->
+        <WrathTypeData :wrathdata="wrathdata" :aurinData="aurinData" :aurinType="aurinType"/>
+
+        <!-- Real-time wrath data -->
+        <!-- <RealtimeData/> -->
+
+         <!-- Centre MAP -->
+        <Map/>
+
+        <!-- MAP BIND/SENDTOCHILD DATA HERE-->
+        <!-- <GenerateMap class="map-container" :wrathdata="wrathdata" /> -->
     </div>
     
 </template>
@@ -27,37 +35,95 @@
 <script>
 // for date selection
 // import DatePicker from 'vue2-datepicker'
-
+import KeywordsRank from '../KeywordsRank/KeywordsRank.vue'
+import WrathTypeData from '../WrathTypeData/WrathTypeData.vue'
+import RealtimeData from '../RealtimeData/RealtimeData.vue'
+import GenerateMap from '../Map/GenerateMap.vue'
+import Map from '../Map/Map.vue';
+// import wordcloud from 'vue-wordcloud'
 export default {
     name: 'filterdata',
-    // components: {
-    //     DatePicker
-    // },
+    components: {
+        Map,
+        KeywordsRank,
+        WrathTypeData,
+        RealtimeData,
+        GenerateMap,
+
+    },
 
     data() {
         return {
+            myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
+            selected: "",
             // TODO: decide what data will be used for comparison
             data_types: [
                 {text: "Data Types", id: 1},
-                {text: 'Illness', id: 2},
-                {text: 'Crime', id: 3},
                 {text: 'Religon', id: 4},
-                {text: 'Unemployment', id: 5}
+                {text: 'Voluntary Work', id: 5}
             ],
-            // fromdate: '',
-            // todate: '',
-            // date_range: "",
-            dbData: []
+            aurinData: [],
+            wrathdata: [],
+            wordsFreq: [],
+            aurin_url: "",
+            wrath_url: "http://172.26.38.75:9024/processed_twit/_design/wrath/_view/rate?group=true",
+            freq_url: "http://172.26.38.75:9024/processed_twit/_design/word/_view/total?group=true",
+            aurinType: ""
+
+
         }
     },
     methods:{
-        getData: function(){
-            this.$axios.get('http://172.26.38.75:9024/aurin_disease/_design/testview/_view/testview')
-            .then( (response) => {
-                this.dbData = response.data;
-                console.log(response);
+        // wordClickHandler(name, value, vm) {
+        //     console.log('wordClickHandler', name, value, vm);
+        // },
+        getData: function(url){
+            if (url != ""){
+                this.$axios.get(url)
+                    .then( (response) => {
+                    this.aurinData = response.data.rows;
+                    // console.log(response.data.rows[0]);
             })
+            }
+        },
+        indexSelected: function() {
+            console.log(this.id)
+            // wrath: http://172.26.38.75:9024/processed_twit/_design/wrath/_view/rate?group=true
+            // voluntary: http://172.26.38.75:9024/gccsa_voluntary/_design/view/_view/view
+            if (this.id === "Religon"){
+                this.url = "http://172.26.38.75:9024/gccsa_religion/_design/views/_view/main_religions";
+                this.aurinType = "Religon"
+            }
+            if (this.id === "Voluntary Work"){
+                this.url = "http://172.26.38.75:9024/gccsa_voluntary/_design/view/_view/view";
+                this.aurinType = "Voluntary Work"
+            }
+        },
+
+        parallelRequest() {
+            this.$axios.all([
+                this.wrath_request(), //or direct the axios request
+                this.freq_request()
+            ])
+            .then(this.$axios.spread((wrath, freq) => {
+                this.wrathdata = wrath.data.rows;
+                this.wordsFreq = freq.data.rows;
+                // console.log("Wrath data" + this.wrathdata)
+                // console.log(" FILTER freq data" + this.wordsFreq[0].value)
+            }))
+        },
+
+        wrath_request() {
+            return this.$axios.get(this.wrath_url);
+        },
+        freq_request() {
+            return this.$axios.get(this.freq_url);
         }
+    },
+    mounted: function(){
+        // load wrath data on map and word cloud diagram
+        // this.getData();
+        this.parallelRequest();
     }
 }
 </script>
@@ -105,6 +171,10 @@ export default {
     margin-top: 0%;
     margin-left: 140px;
     /* padding-top: 0; */
+}
+
+.map-container {
+  margin-top: 50%;
 }
 /* 
 .date_range {

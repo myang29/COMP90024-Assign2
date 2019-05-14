@@ -6,17 +6,18 @@
     <FilterData/>
 
     <!-- Keywords rank -->
-    <KeywordsRank/>
+    <!-- <KeywordsRank/> -->
 
     <!-- Wrath Type -->
-    <WrathTypeData/>
+    <!-- <WrathTypeData/> -->
 
     <!-- Real-time wrath data -->
-    <RealtimeData/>
+    <!-- <RealtimeData/> -->
 
      <!-- Centre MAP -->
-    <Map/>
-    <!-- <GenerateMap/> -->
+    <!-- <Map/> -->
+
+    <!-- <GenerateMap class="map-container"/> -->
     
   
   </div>
@@ -37,21 +38,17 @@ export default {
     GenerateMap,
     Map,
     FilterData,
-    RealtimeData,
-    WrathTypeData,
+    // RealtimeData,
+    // WrathTypeData,
     KeywordsRank,
     Header
   },
   data: {
     return: {
       showBoarder: true,
-      // mapDim: 
-      //   {'mapWidth': 960, 'mapHeight': 1160}
-      // ,
-      // [960, 1160],
-      // mapWidth: 960,
-      // mapHeight: 1160,
-    }
+      
+    },
+
   }
 }
 </script>
@@ -93,6 +90,8 @@ ul {
     padding: 0;
 }
 
+
+
 /* wrath type container */
 /* .wrath-types {
   text-align: center; */
@@ -118,19 +117,6 @@ ul {
   color: #2c3e50;
 } */
 
-/* Filter container */
-/* .filter-container {
-  text-align: center;
-  background: rgb(216, 216, 252);
-  color: #2c3e50;
-  width: 100%;
-  height: 20%;
-  border-radius: 10px;
-  block-size: 20em;
-  padding-top: 0.1px;
-  /* display: inline-block; */
-  /* float: right; */
-/* }  */
 
 /* keywords rank container */
 /* .keywords-rank-container {

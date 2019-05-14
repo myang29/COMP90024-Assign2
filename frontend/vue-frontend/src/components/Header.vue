@@ -2,15 +2,17 @@
 <template>
     <div class="header-container">
         <header>
-            <h1>Team 45 - Wrath Analysis over Victoria</h1>
+            <!-- h1 class="text-info"-->
+            <h1>Wrath Analysis over Australia</h1>
+            <h4 class="col-12">Team 45</h4>
             <nav>
             <!-- unordered list for listing nav -->
-            <ul class="nav" id="nav">
+            <!-- <ul class="nav" id="nav"> -->
                 <!--# in a link means no location -->
-                <li> <a href="#">Real-Time Data</a> </li>
+                <!-- <li> <a href="#">Real-Time Data</a> </li>
                 <li> <a href="#">Past Data</a> </li>
-                <li> <a href="#">Overall</a> </li>
-            </ul>
+                <li> <a href="#">Overall</a> </li> -->
+            <!-- </ul> -->
             </nav>
       </header>
     </div>
@@ -45,6 +47,7 @@ export default {
     margin-left: 1%;
     padding-bottom: 0px;
     background-color: white;
+    height: 100px;
     
 }
 .header a {
