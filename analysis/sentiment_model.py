@@ -1,8 +1,8 @@
 import nltk
-nltk.download("twitter_samples")
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('punkt')
+# nltk.download("twitter_samples")
+# nltk.download('stopwords')
+# nltk.download('wordnet')
+# nltk.download('punkt')
 import re
 import numpy as np
 import pickle
