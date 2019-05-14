@@ -57,47 +57,50 @@ def analysis(twit):
             #         code = multi['properties']['SA2_Code_2011']
 
             # process tweet to predict
-            twit_text = re.sub("http\S+", "", twit['text'])  # remove url
-            blob = TextBlob(twit_text)
-            word_list = []
-            word_list.append(list(blob.words))
-            twit_text = remove_nonalphabet(word_list)
-            twit_text = remove_stopword(twit_text)
-            twit_text = lemmatization(twit_text)
-            twit_text = word_lower(twit_text)
-            twit_dict = []
-            twit_dict.append({i: twit_text[0].count(i) for i in set(twit_text[0])})
-            print(twit_dict)
-            test_ = vectorizer.transform(twit_dict)
-            classify_result = classifier.predict(test_)
+        twit_text = re.sub("http\S+", "", twit['text'])  # remove url
+        blob = TextBlob(twit_text)
+        word_list = []
+        word_list.append(list(blob.words))
+        twit_text = remove_nonalphabet(word_list)
+        twit_text = remove_stopword(twit_text)
+        twit_text = lemmatization(twit_text)
+        twit_text = word_lower(twit_text)
+        twit_dict = []
+        twit_dict.append({i: twit_text[0].count(i) for i in set(twit_text[0])})
+        print(twit_dict)
+        test_ = vectorizer.transform(twit_dict)
+        print(test_)
+        print(classifier)
+        classify_result = classifier.predict(test_)
 
             # tag twitter: identify wrath twitter
-            if classify_result == "negative" and blob.sentiment.polarity < -0.5 and blob.sentiment.subjectivity > 0.5:
-                wrath = True
-            elif len(set(twit_text[0]).intersection(wrath_word)) > 0:
-                wrath = True
-            else:
-                wrath = False
+        if classify_result == "negative" and blob.sentiment.polarity < -0.5 and blob.sentiment.subjectivity > 0.5:
+            wrath = True
+        elif len(set(twit_text[0]).intersection(wrath_word)) > 0:
+            wrath = True
+        else:
+            wrath = False
 
-            doc = {
-                '_id': str(twit['id']),
-                'created_at': twit['created_at'],
-                'coordinates': location[1],
-                'city': location[0],
-                'text': twit_text,
-                'wrath': wrath
-            }
+        doc = {
+            '_id': str(twit['id']),
+            'created_at': twit['created_at'],
+            'coordinates': location[1],
+            'city': location[0],
+            'text': twit_text,
+            'wrath': wrath
+        }
 
-            try:
-                db_proceed.save(doc)
-            except:
-                pass
+        try:
+            db_proceed.save(doc)
+        except:
+            pass
 
 class MyStreamListener(tweepy.StreamListener):
     def on_data(self, status):
         """get real-time tweet and store it"""
         str_tweet = str(status)
         random_num = random.randint(0,2)
+        print('get a tweet')
         if random_num == 0:
             # print(str_tweet)
             tweet_id = re.findall('id\":(\d+),', str_tweet)
@@ -141,10 +144,13 @@ def getting_data(consumer_key, consumer_secret, access_token, access_token_secre
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
+        print('start getting data')
         myStreamListener = MyStreamListener()
         myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
         # myStream.filter(locations=[141, -39.13, 150, -34])
         myStream.filter(locations=[113, -43, 153, -10])
+
+
 def getting_user_history(user_id):
     """getting a users past tweets and filer it and store it"""
     print('start getting history')
@@ -188,7 +194,7 @@ def getting_user_history(user_id):
                                     if (str_tweets != []):
                                         str_tweets = str(str_tweets[0])
                                         print('------------------------------')
-
+                                        
                                         str_tweets=str_tweets.replace('false','False')
                                         str_tweets=str_tweets.replace('null','None')
                                         str_tweets=str_tweets.replace('true','True')
@@ -235,9 +241,9 @@ with open (path+'capital.csv','r') as f:
         city_coordinate[city] = [float(lng),float(lat)]
 
 
-with open(path+'sentiment_model.pkl', 'rb') as file:
+with open('sentiment_model.pkl', 'rb') as file:
     classifier = pickle.load(file)
-
+print('already load')
 #raw_couch = couchdb.Server(raw_address)
 processed_couch = couchdb.Server(processed_address)
 #backup_couch = couchdb.Server(backup_address)
@@ -246,10 +252,13 @@ try:
     db_proceed = processed_couch['processed_tweets']
 except:
     db_proceed = processed_couch.create('processed_tweets')
+print('couchDB ready')
 with open(path+"wrath_word.csv",'r') as f:
     file = csv.reader(f)
     wrath_word = set(list(file)[0])
+print('wrath_word ready')
 while True:
+    print('123123')
     """if one of account going down, just try to use next one."""
     if decisioner >= len(consumer_key_list):
         decisioner -= len(consumer_key_list)
