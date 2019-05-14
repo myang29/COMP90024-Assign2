@@ -1,0 +1,11 @@
+- name: Create volume snapshot(s)
+  os_volume_snapshot:
+    volume: '{{ item.vol_name }}'
+    display_name: "{{ item.vol_name }}-{{ lookup('pipe', 'date +%Y-%m-%d-%H-%M-%S') }}"
+    availability_zone: '{{ availability_zone }}'
+    wait: yes
+    timeout: 600
+    force: yes
+    state: present
+  loop: '{{ instance_pilot }} + {{ instance_hv }}'
+  

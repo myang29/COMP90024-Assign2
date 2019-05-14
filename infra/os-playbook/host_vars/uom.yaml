@@ -1,0 +1,57 @@
+# Common vars
+availability_zone: melbourne-qh2-uom
+# availability_zone: melbourne-qh2
+
+# Instances
+instance_pilot: 
+  - name: pilot
+    volumes: ['db-main']
+    vol_name: db-main
+    vol_size: 80
+
+# insert more harvesters in the list to scale up
+instance_hv:
+  - name: harvester-01
+    volumes: ['harvester-vol-01']
+    vol_name: harvester-vol-01
+    vol_size: 20
+  - name: harvester-02
+    volumes: ['harvester-vol-02']
+    vol_name: harvester-vol-02
+    vol_size: 20
+  - name: harvester-03
+    volumes: ['harvester-vol-03']
+    vol_name: harvester-vol-03
+    vol_size: 20
+
+
+# Instance attributes
+instance_flavor: uom.mse.2c9g
+# image name: NeCTAR Ubuntu 18.04 LTS (Bionic) amd64
+instance_image_pilot: afccf48a-9426-4618-86dc-0ceb636f0169
+instance_image_hv: afccf48a-9426-4618-86dc-0ceb636f0169
+instance_key_name: comp90024-group45
+
+# Security groups
+security_groups:
+  - name: couchdb_tcp
+    description: "[TCP] Open port 902x for couchDB docker instances"
+    protocol: tcp
+    port_range_min: 9020
+    port_range_max: 9029
+    # remote_ip_prefix: 128.250.0.0/16
+    remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb_udp
+    description: "[UDP] Open port 902x for couchDB docker instances"
+    protocol: udp
+    port_range_min: 9020
+    port_range_max: 9029
+    # remote_ip_prefix: 128.250.0.0/16
+    remote_ip_prefix: 0.0.0.0/0
+
+security_groups_default: ["ssh", "http", "default"]
+
+# Network
+instance_net_id: f0c86d08-d45b-45c4-9216-b8abd6bc133c
+# instance_net_name: qh2-uom-internal
+

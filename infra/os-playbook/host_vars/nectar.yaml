@@ -1,0 +1,21 @@
+security_groups:
+  - name: couchdb_tcp
+    description: "[TCP] Open port 802x for couchDB docker instances"
+    protocol: tcp
+    port_range_min: 8020
+    port_range_max: 8029
+    # remote_ip_prefix: 128.250.0.0/16
+    remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb_udp
+    description: "[UDP] Open port 802x for couchDB docker instances"
+    protocol: udp
+    port_range_min: 8020
+    port_range_max: 8029
+    # remote_ip_prefix: 128.250.0.0/16
+    remote_ip_prefix: 0.0.0.0/0
+
+security_groups_default: ["ssh", "http", "default"]
+
+
+
+

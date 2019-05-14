@@ -1,0 +1,37 @@
+- hosts: 
+    all
+
+  vars:
+    environment_file: /etc/environment
+    proxy_rules: |
+        http_proxy="http://wwwproxy.unimelb.edu.au:8000"
+        https_proxy="http://wwwproxy.unimelb.edu.au:8000"
+        ftp_proxy="http://wwwproxy.unimelb.edu.au:8000"
+        no_proxy=localhost,127.0.0.1,127.0.1.1,ubuntu
+
+  tasks:
+    - name: Remove legacy http(s)/tcp proxies.
+      sudo: yes  # sudo to change system files
+      replace:
+        path: "{{ environment_file }}"
+        regexp: '^(http|https|ftp|no)_proxy.*'
+        # Does not use DOTALL, which means the . special character
+        # matches any character except newlines.
+        replace: ""
+    - name: Append new proxy rules
+      sudo: yes  # sudo to change system files
+      lineinfile:
+        state: present
+        path: "{{ environment_file }}"
+        line: "{{ proxy_rules }}"
+
+    - name: Fetch {{ environment_file }}
+      slurp:
+        src: "{{ environment_file }}"
+      register: envfile
+
+    - debug: 
+        msg: "{{ envfile['content'] | b64decode }}"
+
+    # - debug: 
+    #     var: hostvars[inventory_hostname]

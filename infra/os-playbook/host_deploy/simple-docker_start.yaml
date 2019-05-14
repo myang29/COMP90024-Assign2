@@ -1,0 +1,40 @@
+
+- hosts:
+    db_singleton
+
+  vars_files:
+    - vars_docker.yaml
+
+
+  tasks:
+
+    - debug: 
+        msg: "{{ docker_command }}"
+
+    - name: Make sure couchdb is started.
+      become: true
+      command: "{{ docker_command.start }}"
+
+    - name: Manually initialize the database
+      command: "{{ item }}"
+      loop:
+        - curl -X PUT "http://localhost:{{ couchdb.port }}/_users"
+        - curl -X PUT "http://localhost:{{ couchdb.port }}/_replicator"
+        - curl -X PUT "http://localhost:{{ couchdb.port }}/_global_changes"
+        
+    - name: Check couchdb initialization
+      command: "curl -X GET http://localhost:{{ couchdb.port }}/_all_dbs"
+      register: couchdb_all_dbs
+    
+    - debug:
+        msg: "{{ couchdb_all_dbs }}"
+    
+    - name: Manually enable CORS using add-cors-to-couchdb
+      shell: |
+        curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+        sudo apt-get install -y nodejs build-essential
+        sudo npm install npm -g
+        sudo npm install -g add-cors-to-couchdb
+        add-cors-to-couchdb http://localhost:{{ couchdb.port }}
+      args:
+        chdir: "{{ mount_point.symlink }}"

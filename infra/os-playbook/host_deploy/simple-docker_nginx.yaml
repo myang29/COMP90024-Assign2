@@ -1,0 +1,23 @@
+- hosts:
+    db_singleton
+
+  vars_files:
+    - vars_docker.yaml
+
+  tasks:
+
+    - name: Create folder for nginx data
+      become: true
+      file:
+        state: directory
+        path: "{{ nginx.path }}"
+        owner: "{{ mount_point.owner }}"
+        group: "{{ mount_point.group }}"
+
+    - name: Run raw docker commands to pull and run nginx
+      command: |
+        sudo docker pull {{ nginx.image }}
+        docker run --name {{ nginx.container}} \
+        -v {{ nginx.path }}:/usr/share/nginx/html \
+        -p 80:80 \
+        -d {{ nginx.image}}
