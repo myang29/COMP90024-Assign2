@@ -46,7 +46,10 @@ def analysis(twit):
     location = get_city(twit)
     if location and (twit["retweeted"] == False):  # check location exist and remove replicate
             # polygon matching for assign the coordinate to corresponding area used for Aurin
-            # reference: https://gis.stackexchange.com/questions/208546/check-if-a-point-falls-within-a-multipolygon-with-python
+            # reference: https://gis.stackexchange.com/questions/208546/check-if-a-point-falls-
+            
+            
+            #in-a-multipolygon-with-python
             # point = Point(coordinates)
             # code = None
             # if coordinates == [144.9631, -37.8136]:
@@ -234,7 +237,7 @@ row_address = ''
 processed_address = sys.argv[2]
 city_list = set(['Launceston','Melbourne','Sydney','Adelaide','Perth','Brisbane','Darwin','Canberra'])
 city_coordinate = {}
-with open (path+'capital.csv','r') as f:
+with open ('../analysis/capital.csv','r') as f:
     reader = csv.reader(f)
     header = next(reader,None)
     for lng,lat,city in reader:
@@ -253,7 +256,7 @@ try:
 except:
     db_proceed = processed_couch.create('processed_tweets')
 print('couchDB ready')
-with open(path+"wrath_word.csv",'r') as f:
+with open("../analysis/wrath_word.csv",'r') as f:
     file = csv.reader(f)
     wrath_word = set(list(file)[0])
 print('wrath_word ready')
