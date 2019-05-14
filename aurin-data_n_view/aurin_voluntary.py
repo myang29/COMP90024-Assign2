@@ -100,15 +100,17 @@ for item in list:
         rate_75_84 = round(float(volun_75_84) / total_75_84, 5)
         new_doc['rate_75_84'] = rate_75_84
 
-        total_over_85= region_data['p_85_yr_over_total']
+        total_over_85= region_data['p_85_yr_over_tot']
         new_doc['total_over_85'] = total_over_85
-        new_doc['volun_over_85'] = region_data['p_85_yr_over_volunteer']
-        new_doc['rate_over_85'] = round(float(volun_over_85) / total_over_85, 5)
+        volun_over_85 = region_data['p_85_yr_over_volunteer']
+        new_doc['volun_over_85'] = volun_over_85
+        rate_over_85 = round(float(volun_over_85) / total_over_85, 5)
+        new_doc['rate_over_85'] = rate_over_85
 
         #total voluntary percentage
         new_doc['total_person'] = total_person
         new_doc['total_volunteers'] = total_volunteers
         new_doc['v_rate'] = round(total_volunteers/total_person, 5)
 
-        # couch.upload("gccsa_voluntary", new_doc)
+        couch.upload("gccsa_voluntary", new_doc)
         print(new_doc)

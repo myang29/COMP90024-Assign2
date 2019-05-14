@@ -9,8 +9,10 @@ couch.createview("gccsa_religion","view","main_religions",
                                 'Total Persons': doc.total_person,
                                 'Christianity': doc.christianity_tot_p,
                                 'Christianity-Catholic':doc.christianity_catholic_p,
-                                'Islam': doc.islam_p,'Buddhism': doc.buddhism_p,
-                                'Judaism': doc.judaism_p,'Hinduism': doc.hinduism_p,
+                                'Islam': doc.islam_p,
+                                'Buddhism': doc.buddhism_p,
+                                'Judaism': doc.judaism_p,
+                                'Hinduism': doc.hinduism_p,
                                 'Other Religions':doc.other_religions_tot_p,
                                 'Religious Total': doc.religious_percent
                             }
@@ -20,7 +22,7 @@ couch.createview("gccsa_religion","view","main_religions",
                  "")
 
 #views for voluntary work
-couch.createview("gccsa_voluntary","view","view",
+couch.createview("gccsa_voluntary","view","all_age",
                  """
                  function(doc)
                  {

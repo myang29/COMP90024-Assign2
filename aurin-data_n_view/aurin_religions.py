@@ -72,8 +72,7 @@ for item in list:
 
 
             # add to new dict
-            title = religionMap.attribute_map[religion]
-            new_region_doc[title] = percentage
+            new_region_doc[religion] = percentage
 
         # compute the max religion's percentage
 
