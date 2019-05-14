@@ -198,7 +198,7 @@ def getting_user_history(user_id):
                         with open(path + r'tweetId_try1.txt', 'r') as tweet_id_file:
                             decisioner1 = 0
                             for i in tweet_id_file:
-                                if tweet_id == i:
+                                if tweet_id == i[:-1]:
                                     decisioner1 = 1
                             if decisioner1 == 0:
                                 with open(path+r'past_result_try1.json','a') as result1:
