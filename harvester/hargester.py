@@ -2,6 +2,7 @@ import os
 import time
 global time_new,counter
 import tweepy
+import random
 import re
 import json
 import sys
@@ -91,11 +92,8 @@ def analysis(twitLine):
         twit_text = word_lower(twit_text)
         twit_dict = []
         twit_dict.append({i: twit_text[0].count(i) for i in set(twit_text[0])})
-        print(twit_dict,'1111111111111')
         test_ = vectorizer.transform(twit_dict)
-        print(test_,'222222222222222')
         classify_result = classifier.predict(test_)
-        print(classify_result,'33333333333333')
 
 
 if classify_result == "negative" and blob.sentiment.polarity < -0.5 and blob.sentiment.subjectivity > 0.5:
@@ -113,31 +111,32 @@ doc = {
     'wrath': wrath,
     'code': code
 }
-print(444444444444444)
 db_proceed.save(doc)
-print(555555555555)
 
 
 class MyStreamListener(tweepy.StreamListener):
     def on_data(self, status):
+        """get real-time tweet and store it"""
         str_tweet = str(status)
-        # print(str_tweet)
-        tweet_id = re.findall('id\":(\d+),', str_tweet)
-        if (tweet_id != []):
-            tweet_id = tweet_id[0]
-        user_id = re.findall('user\":\{\"id\":(\d+),', str_tweet)
-        with open(path + r'tweetId_try1.txt', 'a') as tweet_id_file:
-            tweet_id_file.write(tweet_id + '\n')
-        if (user_id != []):
-            user_id = user_id[0]
-            getting_user_history(user_id)
-        # print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\past_result_try1.json') / (1024 * 1024))
-
-        with open(path + r'result_try1.json', 'a') as result:
-            json.dump(json.loads(str_tweet), result)
-            result.write(',\n')
-            analysis(str_tweet)
-            # print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024))
+        random_num = random.randint(0,2)
+        if random_num == 0:
+            # print(str_tweet)
+            tweet_id = re.findall('id\":(\d+),', str_tweet)
+            if (tweet_id != []):
+                tweet_id = tweet_id[0]
+            user_id = re.findall('user\":\{\"id\":(\d+),', str_tweet)
+            with open(path + r'tweetId_try1.txt', 'a') as tweet_id_file:
+                tweet_id_file.write(tweet_id + '\n')
+            if (user_id != []):
+                user_id = user_id[0]
+                getting_user_history(user_id)
+            # print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\past_result_try1.json') / (1024 * 1024))
+    
+            with open(path + r'result_try1.json', 'a') as result:
+                json.dump(json.loads(str_tweet), result)
+                result.write(',\n')
+                analysis(str_tweet)
+                # print(os.path.getsize(r'E:\home work\semester2\cloud computing\ass2\data\result_try1.json') / (1024 * 1024))
 
     def on_error(self, status):
         if status == 420:
@@ -149,6 +148,7 @@ class MyStreamListener(tweepy.StreamListener):
 
 
 def getting_data(consumer_key, consumer_secret, access_token, access_token_secret):
+    """create listener to listen real-time tweets and filter it according to location"""
     global time_start
     with open(path + r'result_try1.json', 'a') as result:
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -164,6 +164,7 @@ def getting_data(consumer_key, consumer_secret, access_token, access_token_secre
 
 
 def getting_user_history(user_id):
+    """getting a users past tweets and filer it and store it"""
     print('start getting history')
     consumer_key = 'OWZY1FlntpHBHs0ZHFIBypL3i'
     consumer_secret = 'YLCgOgytB0FLNUjigQx29d5d0R04mwOFlKSkS7aDdvxSLkfNQ7'
@@ -238,7 +239,7 @@ decisioner = 0
 time_start = []
 path = str(sys.argv[1])
 row_address = ''
-processed_address = "http://115.146.92.83:8023"
+processed_address = sys.argv[2]
 geo_data = path+"sa2.json"
 polygon = fiona.open(geo_data)
 processed_couch = couchdb.Server(processed_address)
@@ -257,6 +258,7 @@ with open(path + "wrath_word.csv", 'r') as f:
 with open(path + r'result_try1.json', 'a') as init:
     pass
 while True:
+    """if one of account going down, just try to use next one."""
     if decisioner >= len(consumer_key_list):
         decisioner -= len(consumer_key_list)
     try:
