@@ -13,20 +13,25 @@
             </select>
         </div>
 
-        <!-- Keywords rank -->
-        <KeywordsRank />
-
-        <!-- Wrath Type -->
-        <WrathTypeData :wrathdata="wrathdata" :aurinData="aurinData" :aurinType="aurinType"/>
-
-        <!-- Real-time wrath data -->
-        <!-- <RealtimeData/> -->
-
-         <!-- Centre MAP -->
         <Map/>
 
-        <!-- MAP BIND/SENDTOCHILD DATA HERE-->
-        <!-- <GenerateMap class="map-container" :wrathdata="wrathdata" /> -->
+        <!-- Keywords rank -->
+        <!-- <KeywordsRank /> -->
+
+        <!-- Wrath Type -->
+        <!-- <WrathTypeData :wrathdata="wrathdata" :aurinData="aurinData" :aurinType="aurinType"/> -->
+        <div class="row">
+            <div class="col-6">
+                <WrathTypeData :wrathdata="wrathdata" :aurinData="aurinData" :aurinType="aurinType"/>
+            </div>
+            <div class="col-6">
+            <!-- <h2>hahaha</h2> -->
+            <!-- Keywords rank -->
+                <RealtimeData />
+            </div>
+
+        </div>
+
     </div>
     
 </template>
@@ -174,7 +179,7 @@ export default {
 }
 
 .map-container {
-  margin-top: 50%;
+  margin-top: 2%;
 }
 /* 
 .date_range {

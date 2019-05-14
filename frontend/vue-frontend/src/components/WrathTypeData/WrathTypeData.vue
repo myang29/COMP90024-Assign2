@@ -2,14 +2,14 @@
     <div class="wrath-types">
         <h2>Wrath Distribution</h2>
 
-        <button @click="update(wrathdata)"> Wrath Data</button>
-        <button @click="update(aurinData)"> {{ aurinType }}</button>
+        <!-- <button @click="update(wrathdata)"> Wrath Data</button>
+        <button @click="update(aurinData)"> {{ aurinType }}</button> -->
          <!-- :on="generateBarChart" -->
         <!-- <svg ref="barChart" class="bar-chart">
         </svg> -->
 
-        <!-- <img src="./wrath_bar.jpg" alt="wrath bar chart" class="barchart"> -->
-        <div id="my_dataviz" style="width:500px;height:300px;"></div>
+        <img src="./wrath_bar.jpeg" alt="wrath bar chart" class="barchart">
+        <!-- <div id="my_dataviz" style="width:500px;height:300px;"></div> -->
 
     </div>
     
@@ -79,21 +79,30 @@ export default {
 
 <style scoped>
 .wrath-types {
-    border: 1px solid black;
+    /* border: 5px solid black; */
     text-align: center;
     background:  white;
     color: #2c3e50;
-    width: 53%;
-    border-radius: 10px;
+    width: 98%;
+    /* border-radius: 10px; */
     block-size: 22em;
     padding-top: 0.1px;
     margin-top: 10px;
-    float: left;
+    /* float: left; */
     /* display:inline;   */
-    margin-left: 1%;
+    margin-left: 2%;
     height: 500px;
     margin-right: 1px;
     /* margin-right: 24%; */
+    margin-bottom: 3%;
+    padding-bottom: 3%;
 
+}
+.barchart {
+    margin-top: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 90%;
+    height: 90%;
 }
 </style>

@@ -7,18 +7,27 @@
 
 
 <script>
+
+import MsgBus from '../msgBus.js';
 var echarts = require("echarts");
 require("echarts-wordcloud");
 
 
 export default {
   name: "keywordsrank",
+  components: {
+    MsgBus
+  },
   mounted() {
+
+    //receive city name
+
+
     this.extractFreq();
-    // this.init();
   },
   data(){
     return {
+      cityName: "",
       wordFreq: [],
       option: {
         title: {
@@ -62,12 +71,35 @@ export default {
   },
   methods: {
     init() {
-      console.log("!!!! option data at last = "+ this.option.series[0].data)
+      // console.log("!!!! option data at last = "+ this.option.series[0].data)
       echarts.init(document.getElementById("keywords")).setOption(this.option);
     },
+    compare(attr) {
+      return function(a, b) {
+        var value1 = a[attr];
+        var value2 = b[attr];
+        return value2 - value1;
+      }
+    },
     extractFreq() {
+      MsgBus.$on('cityName', (e) => {
+        this.cityName = e;
+        // console.log("city name from map is: -> "+this.cityName)
+      })
+      // console.log("city name from map is: -> "+this.cityName)
       let tmp=[]
-      this.$axios.get("http://172.26.38.75:9024/processed_twit/_design/word/_view/total?group=true")
+      // if (this.cityName == "Melbourne"){
+        console.log("city name from map is: -> "+this.cityName)
+        //"http://172.26.38.75:9024/processed_twit/_design/word/_view/total?group=true"
+        // http://172.26.38.75:9024/processed_twit/_design/word/_view/adelaide?group=true
+        // http://172.26.38.75:9024/processed_twit/_design/word/_view/brisbane?group=true
+        // http://172.26.38.75:9024/processed_twit/_design/word/_view/canberra?group=true
+        // http://172.26.38.75:9024/processed_twit/_design/word/_view/darwin?group=true
+        // http://172.26.38.75:9024/processed_twit/_design/word/_view/hobart?group=true
+        // http://172.26.38.75:9024/processed_twit/_design/word/_view/melbourne?group=true
+        // http://172.26.38.75:9024/processed_twit/_design/word/_view/perth?group=true
+        // http://172.26.38.75:9024/processed_twit/_design/word/_view/sydney?group=true
+      this.$axios.get("http://172.26.38.75:9024/processed_twit/_design/word/_view/melbourne?group=true")
         .then( (response) => {
         tmp = response.data.rows;
         console.log('tmp')
@@ -79,18 +111,23 @@ export default {
             obj.value = tmp[i].value
             this.wordFreq.push(obj)
           }
-          // console.log("temp 1st key = "+this.wordFreq[i].name + this.wordFreq[i].value);
+          console.log("temp 1st key = "+this.wordFreq[i].name + this.wordFreq[i].value);
         }
-        console.log("wordFreq + "+this.wordFreq.length);
+
+        var sorted = this.wordFreq.sort(this.compare("value")).slice(20,100);
+        // console.log("wordFreq + "+this.wordFreq.length);
         // console.log("test element    -> 4" + this.option.series[0].data[0].name);
-        this.option.series[0].data = this.wordFreq.slice(0,50);
-        // console.log("option data = "+ this.option.series[0].data[0].name + this.option.series.data[0].value)
+        this.option.series[0].data = sorted;
+        console.log("sorted data = "+ sorted)
         this.$nextTick(()=>{
           this.init();
         })
       })
+      // }
+      
      
     }
+    
   }
 };
 </script>
@@ -98,23 +135,24 @@ export default {
 
 <style scoped>
 .keywords-rank-container {
-  border: 1px solid black;
+  border: 5px solid black;
   text-align: center;
   background: white;
   color: #2c3e50;
-  width: 44%;
-  border-radius: 10px;
+  /* width: 44%; */
+  /* border-radius: 10px; */
   block-size: 22em;
   padding-top: 0.1px;
-  margin-top: 10px;
+  /* margin-top: 1px; */
   margin-right: 1%;
-  float: right;
+  margin-bottom: 2px;
+  /* float: right; */
   height: 500px;
 
 }
 #keywords {
-  width: 500px;
-  height: 300px;
+  width: 650px;
+  height: 450px;
   /* border:1px solid red; */
 }
 h2{

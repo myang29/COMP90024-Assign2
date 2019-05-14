@@ -26,7 +26,7 @@ const statesData =
         "STATE_CODE": "2",
         "STATE_NAME": "Victoria",
         "name": rate.rows[5].key,
-        "density": rate.rows[5].value[0]/rate.rows[7].value[1]
+        "density": rate.rows[5].value[0]/rate.rows[5].value[1]
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -42,7 +42,7 @@ const statesData =
         "STATE_CODE": "3",
         "STATE_NAME": "Queensland",
         "name": rate.rows[1].key,
-        "density": rate.rows[1].value[0]/rate.rows[7].value[1]
+        "density": rate.rows[1].value[0]/rate.rows[1].value[1]
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -58,7 +58,7 @@ const statesData =
         "STATE_CODE": "4",
         "STATE_NAME": "South Australia",
         "name": rate.rows[0].key,
-        "density": rate.rows[0].value[0]/rate.rows[7].value[1]
+        "density": rate.rows[0].value[0]/rate.rows[0].value[1]
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -74,7 +74,7 @@ const statesData =
         "STATE_CODE": "5",
         "STATE_NAME": "Western Australia",
         "name": rate.rows[6].key,
-        "density": rate.rows[6].value[0]/rate.rows[7].value[1]
+        "density": rate.rows[6].value[0]/rate.rows[6].value[1]
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -90,7 +90,7 @@ const statesData =
         "STATE_CODE": "6",
         "STATE_NAME": "Tasmania",
         "name": rate.rows[4].key,
-        "density": rate.rows[4].value[0]/rate.rows[7].value[1]
+        "density": rate.rows[4].value[0]/rate.rows[4].value[1]
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -106,7 +106,7 @@ const statesData =
         "STATE_CODE": "7",
         "STATE_NAME": "Northern Territory",
         "name": rate.rows[3].key,
-        "density": rate.rows[3].value[0]/rate.rows[7].value[1]
+        "density": rate.rows[3].value[0]/rate.rows[3].value[1]
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -122,7 +122,7 @@ const statesData =
         "STATE_CODE": "8",
         "STATE_NAME": "Australian Capital Territory",
         "name": rate.rows[2].key,
-        "density": rate.rows[2].value[0]/rate.rows[7].value[1]
+        "density": rate.rows[2].value[0]/rate.rows[2].value[1]
       },
       "geometry": {
         "type": "Polygon",

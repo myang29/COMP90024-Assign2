@@ -1,33 +1,17 @@
 <template>
   <div class="map-container">
-    <!-- <img src="./victoria_map.png" alt="victoria map" class="map"> -->
+    <div class="row">
+        <div class="col-6">
+          <div id="map"  class="text-center"></div>
+        </div>
+        <div class="col-6">
+          <!-- <h2>hahaha</h2> -->
+          <!-- Keywords rank -->
+          <KeywordsRank class="text-center"/>
+        </div>
 
-    <!-- checkbox to select the displayed data format -->
-    <!-- <div class="radio-btn">
-      <label>
-        <input type="radio" name="data-display-format" value>Rate
-      </label>
-      <label>
-        <input type="radio" name="data-display-format" value>Counts
-      </label>
-    </div> -->
-    
-    <div id="map"></div>
-    <!-- <svg>
-            <path>
-                {{ generatemap() }}
-            </path>
+    </div>
 
-    </svg>-->
-    <!-- <div :v-bind="generatemap()" class="map"></div>
-    <div>
-      <svg v-bind="loadData()"></svg>
-    </div> -->
-    <!-- <p>{{ dbData.total_rows}}</p> -->
-    <!-- <p>{{cities}}</p> -->
-    <!-- <svg id ="generateMap">
-            {{ generatemap() }}
-    </svg>-->
   </div>
 </template>
 
@@ -35,9 +19,16 @@
 <script>
 import statesData from "./data2";
 import { Promise } from "q";
+import { log } from 'util';
+import MsgBus from '../msgBus.js';
+import KeywordsRank from '../KeywordsRank/KeywordsRank.vue'
 // import citytopo from './victopo.json';
 export default {
   name: "map",
+  components: {
+    MsgBus,
+    KeywordsRank
+  },
   data() {
     return {
       cities: [
@@ -203,6 +194,7 @@ export default {
       };
 
       info.update = function(props) {
+        
         this._div.innerHTML =
           "<div style='border:1px solid red'>" +
           "<h4>Australia Wrath Data distribution </h4>" +
@@ -215,28 +207,32 @@ export default {
             : "Hover over a state");
         +"</div>";
       };
-
+      
       info.addTo(map);
 
+      
       // get color depending on population density value
       function getColor(d) {
-        return d > 100
-          ? "#800026"
-          : d > 50
-          ? "#BD0026"
-          : d > 20
-          ? "#E31A1C"
-          : d > 10
-          ? "#FC4E2A"
-          : d > 5
-          ? "#FD8D3C"
-          : d > 2
-          ? "#FEB24C"
-          : d > 1
+        return d >  0.055
+
+          ? "#CA4D65"
+          : d > 0.050
+          ? "#F3311B"
+          : d > 0.045
+          ? "#F3581B"
+          : d > 0.0435
+          ? "#F38B2F"
+          : d > 0.042
+          ? "#F39D5A"
+          : d > 0.038
+          ? "#F3AD5A"
+          : d > 0.035
+          ? "#F6CE6C"
+          : d > 0.025
           ? "#FED976"
           : "#FFEDA0";
       }
-
+      // [0, 0.025, 0.035, 0.038, 0.042, 0.0435, 0.045,0.050, 0.055],
       function style(feature) {
         return {
           weight: 2,
@@ -263,6 +259,8 @@ export default {
         }
 
         info.update(layer.feature.properties);
+        // send city name to wordcloud
+        MsgBus.$emit('cityName', layer.feature.properties.name);
       }
 
       var geojson;
@@ -297,7 +295,7 @@ export default {
 
       legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "info legend"),
-          grades = [0, 1, 2, 5, 10, 20, 50, 100],
+          grades = [0, 0.025, 0.035, 0.038, 0.042, 0.0435, 0.045,0.050, 0.055],
           labels = [],
           from,
           to;
@@ -331,9 +329,9 @@ export default {
 
 
 <style scoped>
-.map-boarder {
+/* .map-boarder {
   border: 5px solid black;
-}
+} */
 /* 
 .map-container { 
     border: 1px solid gray;
@@ -342,7 +340,7 @@ export default {
     padding-left: -40px;
     width: 60%;
     height: 50%;
-    margin-top: 18px;
+    margin-top: 0px;
     margin-right: 3px;
     display: block; 
 } */
@@ -367,10 +365,14 @@ export default {
   /* margin-bottom: 10px; */
   z-index: 999;
   position: relative;
+  
 }
 #map {
-  width: 100%;
+  /* width: 50%; */
   height: 500px;
+  margin-top: 0;
+  margin-left: 2%;
+  border: 5px solid black;
 }
 
 .radio-btn {

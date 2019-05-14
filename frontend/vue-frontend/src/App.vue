@@ -5,20 +5,6 @@
     <!-- Filter data -->
     <FilterData/>
 
-    <!-- Keywords rank -->
-    <!-- <KeywordsRank/> -->
-
-    <!-- Wrath Type -->
-    <!-- <WrathTypeData/> -->
-
-    <!-- Real-time wrath data -->
-    <!-- <RealtimeData/> -->
-
-     <!-- Centre MAP -->
-    <!-- <Map/> -->
-
-    <!-- <GenerateMap class="map-container"/> -->
-    
   
   </div>
 </template>
@@ -91,57 +77,4 @@ ul {
 }
 
 
-
-/* wrath type container */
-/* .wrath-types {
-  text-align: center; */
-  /* #00C2FF */
-  /* background: white;
-  color: #2c3e50;
-  width: 20%;
-  border-radius: 10px;
-  block-size: 24.6em; */
-  /* display: inline-block; */
-  /* float: right;
-
-} */
-
-/* Map container */
-/* .central-map-container {
-  margin-right:-2%;
-  text-align: center;
-  width: 65%;
-  border-radius: 10px;
-  block-size: 20em;
-  float: right;
-  color: #2c3e50;
-} */
-
-
-/* keywords rank container */
-/* .keywords-rank-container {
-  text-align: center;
-  background: white; */
-  /* color: black; */
-  /* color: #2c3e50;
-  width: 20%;
-  border-radius: 10px;
-  block-size: 25em; */
-  /* display: inline-block; */
-  /* float: right;
-} */
-
-/* realtime container */
-/* .real-time-container {
-  text-align: center;
-  background:  white;
-  color: #2c3e50;
-  width: 20%;
-  border-radius: 10px;
-  block-size: 25em;
-  padding-top: 0.1px;
-  margin-top: 10px; */
-  /* display: inline-block;
-  float: left; */
-/* } */
 </style>
