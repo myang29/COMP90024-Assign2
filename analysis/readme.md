@@ -17,8 +17,8 @@ The sentiment Analysis system contains 5 files:
 4. capital.csv  
    A csv file with Australian capital cities and its coordinates
 
-5. analysis.py  
-   preprocess raw twitter data, conduct sentiment analysis, and matching SA2 polygons, and save result to couchDB as Processed_twit
+5. analysis_new.py  
+   preprocess raw twitter data, conduct sentiment analysis, and matching SA2 polygons, and save result to couchDB as Processed_twit (call by harvester process directly).
 
 ## 2. Prerequisites
 ```
