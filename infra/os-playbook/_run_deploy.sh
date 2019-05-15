@@ -23,6 +23,8 @@ RC_FILE=./openrc-withpw.sh
 . $RC_FILE; ansible-playbook -i $HOST_FILE host_deploy/simple-docker_start.yaml
 # after starting the couchdb container, define views with python scripts
 . $RC_FILE; ansible-playbook -i $HOST_FILE host_deploy/simple-aurin.yaml
+# set up nginx for web hosting
+. $RC_FILE; ansible-playbook -i $HOST_FILE host_deploy/simple-docker_nginx.yaml
 
 
 
