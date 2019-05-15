@@ -1,0 +1,24 @@
+- name: Create pilot instances
+  os_server:
+    name: '{{ item.name }}'
+    image: '{{ instance_image_pilot }}'
+    flavor: '{{ instance_flavor }}'
+    key_name: '{{ instance_key_name }}'
+    availability_zone: '{{ availability_zone }}'
+    security_groups: '{{ sg_names + security_groups_default }}' # list
+    # security_groups: '{{ security_groups_default }}' # list
+    # volumes: '{{ os_vol_ids }}' # list
+    volumes: '{{ item.volumes }}'
+    nics:
+      - net-id: '{{ instance_net_id }}'
+    auto_floating_ip: yes
+    wait: yes
+    timeout: 200
+    state: present # create
+    # state: absent # delete
+  register: os_instances
+  loop: '{{ instance_pilot }}'
+
+- debug:
+    msg: "Instance has been created. IP address is {{ item.openstack.public_v4 }}."
+  loop: '{{ os_instances.results }}'

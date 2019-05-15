@@ -1,0 +1,36 @@
+- hosts:
+    db_singleton
+
+  vars_files:
+    - vars_docker.yaml
+
+  tasks:
+    - name: verify configuration change
+      command: systemctl show --property=Environment docker
+      register: docker_envr
+    
+    - debug:
+        msg: "{{ docker_envr }}"
+
+    - debug: 
+        msg: "{{ docker_command }}"
+    
+    - name: Run raw docker command {{ docker_command.pull }}
+      become: true
+      command: "{{ docker_command.pull }}"
+
+    # - name: Create docker volume {{ couchdb.config_volume }}
+    #   become: true
+    #   command: "docker create volume {{ couchdb.config_volume }}"
+    
+    - name: Run raw docker command {{ docker_command.run }}
+      become: true
+      command: "{{ docker_command.run }}"
+
+    - name: Check container information
+      become: true
+      command: "docker inspect {{ couchdb.container }}"
+      register: couchdb_container_info
+    
+    - debug:
+        msg: "{{ couchdb_container_info }}"

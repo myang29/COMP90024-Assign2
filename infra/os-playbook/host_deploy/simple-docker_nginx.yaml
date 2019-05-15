@@ -1,0 +1,47 @@
+- hosts:
+    db_singleton
+
+  vars_files:
+    - vars_docker.yaml
+
+  vars:
+    git_repo: https://github.com/myang29/COMP90024-Assign2.git
+    git_folder: "{{ mount_point.symlink }}/COMP90024-Assign2"
+
+  tasks:
+
+    - name: Create folder for nginx data
+      become: true
+      file:
+        state: directory
+        path: "{{ nginx.path }}"
+        owner: "{{ mount_point.owner }}"
+        group: "{{ mount_point.group }}"
+
+    - name: Create folder {{ git_folder }} for git repository
+      become: true
+      file:
+        state: directory
+        path: "{{ git_folder }}"
+        owner: "{{ mount_point.owner }}"
+        group: "{{ mount_point.group }}"
+
+    - name: Clone git repository to {{ git_folder }}
+      git:
+        repo: "{{ git_repo }}"
+        dest: "{{ git_folder }}"
+        force: yes
+
+    - name: Copy files from git repository to nginx html folder
+      shell: |
+        cd {{ nginx.path }}
+        cp -r {{ git_folder }}/frontend/dist_/* .
+
+    - name: Run raw docker commands to pull and run nginx
+      shell: |
+        sudo docker pull {{ nginx.image }}
+        sudo docker run --name {{ nginx.container}} \
+        --restart always \
+        -v {{ nginx.path }}:/usr/share/nginx/html \
+        -p 80:80 \
+        -d {{ nginx.image}}

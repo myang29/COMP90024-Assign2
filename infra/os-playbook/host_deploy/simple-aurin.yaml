@@ -1,0 +1,70 @@
+- hosts:
+    db_singleton
+
+  vars_files:
+    - vars_docker.yaml
+
+  vars:
+    pip:
+      executable: pip3
+      apt_package: python3-pip
+      packages: []
+
+    python:
+      executable: python3
+      scripts:
+        - aurin_voluntary.py
+        - aurin_religions.py
+        - views.py
+  
+    # This access token is destroyed by github automatically as soon as we made the 
+    # repository public. So unfortunately the following access link is broken.
+      # git_user: zane-uni
+      # git_token: 72be5080effa2337756a42c8625c3762f69ea1c7
+      # git_repo: https://{{git_user}}:{{git_token}}@github.com/myang29/COMP90024-Assign2.git
+    # The public access is still open through the following link.
+    git_repo: https://github.com/myang29/COMP90024-Assign2.git
+    git_folder: "{{ mount_point.symlink }}/COMP90024-Assign2"
+    result_folder: "{{ mount_point.symlink }}/result"
+    remote_ip: http://172.26.38.75:9024
+
+  tasks:
+
+    - name: "Make sure git and {{ pip.executable }} are installed"
+      become: true
+      apt:
+        name: 
+          - git
+          - "{{ pip.apt_package }}"
+        state: latest
+        update_cache: yes
+
+    - name: Manually install couchdb
+      shell: "{{ pip.executable }} install couchdb"
+
+    - name: Create folder {{ result_folder }} for harvester result
+      become: true
+      file:
+        state: directory
+        path: "{{ result_folder }}"
+        owner: "{{ mount_point.owner }}"
+        group: "{{ mount_point.group }}"
+
+    - name: Create folder {{ git_folder }} for git repository
+      become: true
+      file:
+        state: directory
+        path: "{{ git_folder }}"
+        owner: "{{ mount_point.owner }}"
+        group: "{{ mount_point.group }}"
+
+    - name: Clone git repository to {{ git_folder }}
+      git:
+        repo: "{{ git_repo }}"
+        dest: "{{ git_folder }}"
+
+    - name: Populate Aurin data and define views
+      command: "{{ python.executable }} {{ item }}"
+      args:
+        chdir: "{{ git_folder }}/aurin-data_n_view"
+      loop: "{{ python.scripts }}"

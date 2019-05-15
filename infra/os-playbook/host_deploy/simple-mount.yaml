@@ -1,0 +1,61 @@
+- hosts:
+    all
+
+  vars:
+    volume_default:
+      fstype: ext4
+      device: /dev/vdb
+
+    # # default device name is /dev/vdb
+    # mount_point: 
+    #   path: /data
+    #   owner: ubuntu
+    #   group: ubuntu
+    #   symlink: /home/ubuntu/data
+
+  vars_files:
+    - vars_docker.yaml
+
+  tasks:
+    # if filesystem exist on these volumes, state is not changed.
+    # 172.26.37.162              : ok=5    changed=0    unreachable=0    failed=0
+    # 172.26.38.85               : ok=5    changed=0    unreachable=0    failed=0
+    - name: Format volume
+      become: true # run as root
+      filesystem:
+        fstype: "{{ volume_default.fstype }}"
+        dev: "{{ volume_default.device }}"
+    
+    - name: Create mount point and configure owner
+      become: true
+      file:
+        state: directory
+        path: "{{ mount_point.path }}"
+        owner: "{{ mount_point.owner }}"
+        group: "{{ mount_point.group }}"
+
+    - name: Create symbolic link to mount point
+      file:
+        state: link
+        src: "{{ mount_point.path }}"
+        path: "{{ mount_point.symlink }}"
+        owner: "{{ mount_point.owner }}"
+        group: "{{ mount_point.group }}"
+
+    - name: Mount volume
+      become: true # run as root
+      mount:
+        state: mounted
+        # The device will be actively mounted and appropriately configured in fstab
+        # If the mount point is not present, the mount point will be created.
+        fstype: "{{ volume_default.fstype }}"
+        src: "{{ volume_default.device }}"
+        path: "{{ mount_point.path }}"
+
+    # - name: Mount up device by UUID
+    #   mount:
+    #     path: /home
+    #     src: UUID=b3e48f45-f933-4c8e-a700-22a159ec9077
+    #     fstype: xfs
+    #     opts: noatime
+    #     state: present

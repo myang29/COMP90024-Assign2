@@ -1,0 +1,65 @@
+- hosts:
+    db_singleton
+
+  vars_files:
+    - vars_docker.yaml
+
+  tasks:
+    # - name: make sure python-pip is installed
+    #   become: true
+    #   apt:
+    #     name: python-pip
+    #     state: latest
+    #     update_cache: yes
+
+    # - name: install docker module dependencies
+    #   pip:
+    #     executable: pip
+    #     name: "{{ docker_dependencies }}"
+    #     state: present
+
+    - name: configure docker daemon proxy (1 - folder)
+      become: true
+      file:
+        state: directory
+        path: "{{ docker_daemon.folder }}" # folder
+
+    # Add a line to a file if the file does not exist, without passing regexp
+    - name: configure docker daemon proxy (2 - http)
+      become: true
+      lineinfile:
+        path: "{{ docker_daemon.http_file }}"
+        line: "{{ docker_daemon.http_line }}"
+        create: yes
+
+    - name: configure docker daemon proxy (3 - https)
+      become: true
+      lineinfile:
+        path: "{{ docker_daemon.https_file }}"
+        line: "{{ docker_daemon.https_line }}"
+        create: yes
+    
+    # sudo systemctl restart docker
+    - name: configure docker service using systemd
+      become: true
+      systemd:
+        daemon_reload: yes
+        enabled: yes
+        state: restarted
+        name: docker
+
+    - name: verify configuration change
+      command: systemctl show --property=Environment docker
+      register: docker_envr
+    
+    - debug:
+        msg: "{{ docker_envr }}"
+
+    # create folder for couchdb data
+    - name: Create folder for couchdb data
+      become: true
+      file:
+        state: directory
+        path: "{{ couchdb.path }}"
+        owner: "{{ couchdb.owner }}"
+        group: "{{ couchdb.group }}"
