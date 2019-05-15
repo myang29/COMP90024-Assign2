@@ -19,10 +19,13 @@
         # - shapely
         # - mpcouch
   
-    # git_user: zane-uni
-    # git_token: 72be5080effa2337756a42c8625c3762f69ea1c7
-    # git_repo: https://{{git_user}}:{{git_token}}@github.com/myang29/COMP90024-Assign2.git
-    git_repo: https://zane-uni:72be5080effa2337756a42c8625c3762f69ea1c7@github.com/myang29/COMP90024-Assign2.git
+    # This access token is destroyed by github automatically as soon as we made the 
+    # repository public. So unfortunately the following access link is broken.
+      # git_user: zane-uni
+      # git_token: 72be5080effa2337756a42c8625c3762f69ea1c7
+      # git_repo: https://{{git_user}}:{{git_token}}@github.com/myang29/COMP90024-Assign2.git
+    # The public access is still open through the following link.
+    git_repo: https://github.com/myang29/COMP90024-Assign2.git
     git_folder: "{{ mount_point.symlink }}/COMP90024-Assign2"
     result_folder: "{{ mount_point.symlink }}/result"
     remote_ip: http://172.26.38.75:9024

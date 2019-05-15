@@ -5,7 +5,7 @@
     - vars_docker.yaml
 
   vars:
-    git_repo: https://zane-uni:72be5080effa2337756a42c8625c3762f69ea1c7@github.com/myang29/COMP90024-Assign2.git
+    git_repo: https://github.com/myang29/COMP90024-Assign2.git
     git_folder: "{{ mount_point.symlink }}/COMP90024-Assign2"
 
   tasks:
