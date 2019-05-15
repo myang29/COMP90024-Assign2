@@ -30,6 +30,7 @@
       git:
         repo: "{{ git_repo }}"
         dest: "{{ git_folder }}"
+        force: yes
 
     - name: Copy files from git repository to nginx html folder
       shell: |
