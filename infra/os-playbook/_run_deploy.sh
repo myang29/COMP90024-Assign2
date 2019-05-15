@@ -15,6 +15,11 @@ HOST_FILE=inventory/hosts.ini
 RC_FILE=./openrc-withpw.sh
 # RC_FILE=../unimelb-ee40617-openrc.sh
 
+# *** prerequisite ***
+# copy private key
+cp ./comp90024-group45-privatekey ~/.ssh
+sudo chmod 600 ~/.ssh/comp90024-group45-privatekey
+
 # *** common tasks for all instances ***
 # --------------------------------------
 # configure (http|https|no) proxy
