@@ -1,0 +1,10 @@
+{"total_rows":8,"offset":0,"rows":[
+{"id":"4e3c3e734fdd6a7da160474c53b7ed64","key":"Adelaide","value":{"_id":"4e3c3e734fdd6a7da160474c53b7ed64","_rev":"1-46edc85f5b883cc0af6cf76c9c755ed0","gcc_code":"4GADE","gcc_name":"Adelaide","total_person":1067496,"total_volunteers":206191,"v_rate":0.19315}},
+{"id":"4e3c3e734fdd6a7da160474c53b7a19c","key":"Brisbane","value":{"_id":"4e3c3e734fdd6a7da160474c53b7a19c","_rev":"1-d4fefa26c02ff913b67eb6c701e9cc14","gcc_code":"3GBRI","gcc_name":"Brisbane","total_person":1836450,"total_volunteers":337635,"v_rate":0.18385}},
+{"id":"4e3c3e734fdd6a7da160474c53b99c65","key":"Canberra","value":{"_id":"4e3c3e734fdd6a7da160474c53b99c65","_rev":"1-53f05108ca6a5305696e2fccb8c277d2","gcc_code":"8ACTE","gcc_name":"Canberra","total_person":326033,"total_volunteers":74601,"v_rate":0.22881}},
+{"id":"4e3c3e734fdd6a7da160474c53b96d74","key":"Darwin","value":{"_id":"4e3c3e734fdd6a7da160474c53b96d74","_rev":"1-dc07f8ea7158db24d8ed338490368a4b","gcc_code":"7GDAR","gcc_name":"Darwin","total_person":124188,"total_volunteers":20749,"v_rate":0.16708}},
+{"id":"4e3c3e734fdd6a7da160474c53b8a02a","key":"Hobart","value":{"_id":"4e3c3e734fdd6a7da160474c53b8a02a","_rev":"1-42ae8d0dc0ca05662214511547cd41b9","gcc_code":"6GHOB","gcc_name":"Hobart","total_person":181077,"total_volunteers":37572,"v_rate":0.20749}},
+{"id":"4e3c3e734fdd6a7da160474c53b741ec","key":"Melbourne","value":{"_id":"4e3c3e734fdd6a7da160474c53b741ec","_rev":"1-fa9d04a544fbdea6933552e220a5799d","gcc_code":"2GMEL","gcc_name":"Melbourne","total_person":3702060,"total_volunteers":639493,"v_rate":0.17274}},
+{"id":"4e3c3e734fdd6a7da160474c53b840e7","key":"Perth","value":{"_id":"4e3c3e734fdd6a7da160474c53b840e7","_rev":"1-f10eb5d290c59c1f3a882945cdde7ce8","gcc_code":"5GPER","gcc_name":"Perth","total_person":1563967,"total_volunteers":278102,"v_rate":0.17782}},
+{"id":"4e3c3e734fdd6a7da160474c53b664bc","key":"Sydney","value":{"_id":"4e3c3e734fdd6a7da160474c53b664bc","_rev":"1-fe16f5e2ae92a55e49df0e40e071158f","gcc_code":"1GSYD","gcc_name":"Sydney","total_person":3992576,"total_volunteers":651593,"v_rate":0.1632}}
+]}

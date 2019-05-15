@@ -3,7 +3,11 @@
 by Team 45
 
 ## Team Members
-
+830665 Wan-Yun Sun wanyuns@student.unimelb.edu.au 
+929739 Zeyu Huang z.huang56@student.unimelb.edu.au
+705577 Meng Yang myang2@student.unimelb.edu.au
+938134 Zhizhou Chen zhizhouc@student.unimelb.edu.au
+825847 Tong Su tsu2@student.unimelb.edu.au 
 
 
 ## Folder Structure

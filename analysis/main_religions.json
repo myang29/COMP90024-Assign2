@@ -1,0 +1,10 @@
+{"total_rows":8,"offset":0,"rows":[
+{"id":"ba16f1af088f7d7edc17881d793ad685","key":"Adelaide","value":{"Total Persons":1295714,"Christianity":0.48157,"Islam":0.02093,"Buddhism":0.02229,"Judaism":0.00073,"Hinduism":0.01711,"Other Religions":0.01088,"Religious Total":0.55888}},
+{"id":"ba16f1af088f7d7edc17881d793ab1c4","key":"Brisbane","value":{"Total Persons":2270800,"Christianity":0.53644,"Islam":0.0149,"Buddhism":0.01959,"Judaism":0.00097,"Hinduism":0.01475,"Other Religions":0.00952,"Religious Total":0.60148}},
+{"id":"ba16f1af088f7d7edc17881d793b3ad8","key":"Canberra","value":{"Total Persons":396857,"Christianity":0.45388,"Islam":0.02486,"Buddhism":0.02497,"Judaism":0.00162,"Hinduism":0.02572,"Other Religions":0.00933,"Religious Total":0.54684}},
+{"id":"ba16f1af088f7d7edc17881d793b191c","key":"Darwin","value":{"Total Persons":136828,"Christianity":0.44833,"Islam":0.01479,"Buddhism":0.02751,"Judaism":0.00058,"Hinduism":0.02198,"Other Religions":0.00733,"Religious Total":0.52495}},
+{"id":"ba16f1af088f7d7edc17881d793b0b31","key":"Hobart","value":{"Total Persons":222356,"Christianity":0.47274,"Islam":0.00697,"Buddhism":0.00914,"Judaism":0.0006,"Hinduism":0.00732,"Other Religions":0.0052,"Religious Total":0.50739}},
+{"id":"ba16f1af088f7d7edc17881d793a928d","key":"Melbourne","value":{"Total Persons":4485211,"Christianity":0.46263,"Islam":0.04162,"Buddhism":0.03803,"Judaism":0.00928,"Hinduism":0.02875,"Other Religions":0.01456,"Religious Total":0.5993}},
+{"id":"ba16f1af088f7d7edc17881d793aed62","key":"Perth","value":{"Total Persons":1943858,"Christianity":0.49705,"Islam":0.02438,"Buddhism":0.02452,"Judaism":0.00267,"Hinduism":0.01887,"Other Religions":0.01027,"Religious Total":0.58263}},
+{"id":"ba16f1af088f7d7edc17881d793a7db7","key":"Sydney","value":{"Total Persons":4823991,"Christianity":0.51742,"Islam":0.05254,"Buddhism":0.03856,"Judaism":0.0073,"Hinduism":0.03527,"Other Religions":0.01049,"Religious Total":0.66546}}
+]}
