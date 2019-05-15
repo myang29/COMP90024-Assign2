@@ -96,7 +96,7 @@ export default {
             // console.log("temp 1st key = "+this.wordFreq[i].name + this.wordFreq[i].value);
           }
 
-        var sorted = this.wordFreq.sort(this.compare("value")).slice(20,100);
+        var sorted = this.wordFreq.sort(this.compare("value")).slice(15,100);
         // console.log("wordFreq + "+this.wordFreq.length);
         // console.log("test element    -> 4" + this.option.series[0].data[0].name);
         this.option.series[0].data = sorted;

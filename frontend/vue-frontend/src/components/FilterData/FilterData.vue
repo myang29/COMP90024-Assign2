@@ -23,12 +23,12 @@
 
             <div class="col-6">
                 <div class="line-container">
-                    <img src="./voluntary.jpeg" alt="wrath bar chart" class="linechart text-center">
+                    <img src="./religion.jpeg" alt="wrath bar chart" class="linechart text-center">
                 </div>
             </div>
         </div>
 
-        <h2>Wrath & Religion Work</h2>
+        <h2>Wrath & Religion</h2>
         <div class="row">
             <div class="col-6">
                 <div class="bar-container">
@@ -37,7 +37,7 @@
             </div>
             <div class="col-6">
                 <div class="line-container">
-                    <img src="./religion.jpeg" alt="wrath bar chart" class="linechart text-center">
+                    <img src="./voluntary.jpeg" alt="wrath bar chart" class="linechart text-center">
                 </div>
             </div>
         </div>

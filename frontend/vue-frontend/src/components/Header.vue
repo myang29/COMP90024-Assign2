@@ -2,17 +2,9 @@
 <template>
     <div class="header-container" :style="backgroundDiv">
         <header>
-            <!-- h1 class="text-info"-->
             <h1>Wrath Analysis over Australia</h1>
-            <!-- <h4 class="col-12">Team 45</h4> -->
             <nav>
-            <!-- unordered list for listing nav -->
-            <!-- <ul class="nav" id="nav"> -->
-                <!--# in a link means no location -->
-                <!-- <li> <a href="#">Real-Time Data</a> </li>
-                <li> <a href="#">Past Data</a> </li>
-                <li> <a href="#">Overall</a> </li> -->
-            <!-- </ul> -->
+       
             </nav>
         </header>
     </div>
@@ -26,7 +18,7 @@ export default {
     name: 'header',
     data() {
       return{
-        backgroundDiv: {backgroundImage:'url(' + require('./Anger.jpg') + ')',
+        backgroundDiv: {backgroundImage:'url(' + require('./Anger.jpeg') + ')',
         backgroundRepeat:'no-repeat',
         backgroundSize:'100% 100%'
     }
@@ -47,14 +39,16 @@ export default {
 
 }
 h1{
-  padding-top: 30px;
+  padding-top: 215px;
+  padding-left: 15%;
+  padding-right: 60%;
   color: black;
   font-weight: 1000;
   font-family: 'Montserrat', sans-serif;
 }
 
 .header-container {
-    width: 98%;
+    width: 100%;
     text-align: center;
     /* border: 1px solid black; */
     margin-bottom: 0px;
@@ -65,8 +59,8 @@ h1{
     
 }
 .header a {
-    /* color: #fff; */
-    /* padding-right: 5px; */
+    color: #fff;
+    padding-right: 5px;
 }
 
 .nav {
